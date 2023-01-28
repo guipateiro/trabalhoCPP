@@ -44,4 +44,5 @@ coisas q eu n pensei direito:
 - vai ter uma lista de amizades?   
 - vai ter chat no estilo DM? (e vaiter algo a ver com a lista de mensagens)  
 - como a barra de pesquisa funciona?   
-- como agregar as postagens em albuns (pq isso tava no email q eu mandei pro paulo)  
+- como agregar as postagens em albuns (pq isso tava no email q eu mandei pro paulo) 
+- loguin e senha ? (usar criptografia??)
