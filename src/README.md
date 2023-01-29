@@ -1,6 +1,6 @@
-## desenvolvimento das classes
+# desenvolvimento das classes
 
-# Criado 
+## Criado 
 
 - main     
 - Administrador   
@@ -16,13 +16,13 @@
 - Video    
 - Visitante   
 
-# Iniciados
+## Iniciados
 
 - Post
 
 
-# implementada
+## implementada
 
 
 
-# finalizada/testada/documentada/etc
+## finalizada/testada/documentada/etc
