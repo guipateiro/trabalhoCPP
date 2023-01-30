@@ -7,19 +7,18 @@
 - Chat    
 - Comentario    
 - Historico    
-- Imagem    
 - Interface    
-- Listadepostagens     
-- Texto    
+- Listadepostagens  
 - Usuario    
 - Usuarioadministrador    
-- Video    
 - Visitante   
 
 ## Iniciados
 
 - Post
-
+- Imagem    
+- Video
+- Texto    
 
 ## implementada
 
