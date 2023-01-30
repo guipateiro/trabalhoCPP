@@ -1,10 +1,14 @@
 #ifndef TEXTO_HPP
 #define TEXTO_HPP
 
-class Texto{
+#include "Post.hpp"
+
+
+class Texto : public Post{
 	public:
-		Texto(/* args */);
-		~Texto();
+		Texto(std::string link);
+		virtual ~Texto();
+		virtual void run() const;
 	private:
 		/* data */
 };

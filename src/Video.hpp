@@ -6,8 +6,8 @@
 class Video : public Post{
 	public:
 		Video(std::string link);
-		~Video();
-		virtual void run();
+		virtual ~Video();
+		virtual void run() const;
 	private: 
 		/* data */
 };
