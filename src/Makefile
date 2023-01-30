@@ -15,7 +15,7 @@ $(nomePrograma): $(files)   #ligacao final dos .o
 	$(CC) -c $< $(CFLAGS)
 
 clean:
-	rm -f *.o *.gch 
+	rm -f *.o *.gch *.txt
 
 purge: clean 
 	rm -f $(nomePrograma)	
