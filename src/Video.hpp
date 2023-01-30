@@ -1,12 +1,14 @@
 #ifndef VIDEO_HPP
 #define VIDEO_HPP
 
+#include "Post.hpp"
 
-class Video{
+class Video : public Post{
 	public:
-		Video(/* args */);
+		Video(std::string link);
 		~Video();
-	private:
+		virtual void run();
+	private: 
 		/* data */
 };
 
