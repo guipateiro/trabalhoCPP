@@ -2,7 +2,9 @@
 
 
 Post::Post(/* args */){
+
 }
 
 Post::~Post(){
+	
 }
