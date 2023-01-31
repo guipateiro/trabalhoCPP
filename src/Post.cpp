@@ -3,7 +3,7 @@
 
 
 Post::Post(){
-	id = Id::getId();
+	id = Id::getnextId();
 }
 
 Post::Post(std::string link):Post{}{
