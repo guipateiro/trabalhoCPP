@@ -4,21 +4,29 @@
 
 - main     
 - Administrador   
-- Chat    
-- Comentario    
 - Historico    
 - Interface    
-- Listadepostagens  
 - Usuario    
 - Usuarioadministrador    
 - Visitante   
 
 ## Iniciados
 
+### sendo mexidas pelo guilherme (basicamente a parte de posts do diagrama)
 - Post
 - Imagem    
 - Video
 - Texto    
+- Data
+- Comentario    
+- Chat    
+- Tags
+- Listadepostagens  
+
+### sendo mexidas pelo tiago 
+
+- ?????????
+
 
 ## implementada
 
