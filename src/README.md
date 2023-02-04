@@ -1,28 +1,36 @@
-## desenvolvimento das classes
+# desenvolvimento das classes
 
-# Criado 
+## Criado 
 
 - main     
 - Administrador   
-- Chat    
-- Comentario    
 - Historico    
-- Imagem    
 - Interface    
-- Listadepostagens     
-- Texto    
 - Usuario    
 - Usuarioadministrador    
-- Video    
 - Visitante   
 
-# Iniciados
+## Iniciados
 
+### sendo mexidas pelo guilherme (basicamente a parte de posts do diagrama)
 - Post
+- Imagem    
+- Video
+- Texto    
+- Data
+- Comentario    
+- Chat    
+- Tags
+- Listadepostagens  
+
+### sendo mexidas pelo tiago 
+
+- ?????????
 
 
-# implementada
+
+## implementada
 
 
 
-# finalizada/testada/documentada/etc
+## finalizada/testada/documentada/etc
