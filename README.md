@@ -46,3 +46,12 @@ coisas q eu n pensei direito:
 - como a barra de pesquisa funciona?   
 - como agregar as postagens em albuns (pq isso tava no email q eu mandei pro paulo) 
 - loguin e senha ? (usar criptografia??)
+
+
+## algumas ideias que eu tive (fiquei maluco)  
+basicamente tudo q ta descrito aqui poderia ser feito como um trabalho para suas respectivas materias
+
+- postagens que realmente sao executadas (no caso de fotos e videos)
+- usuarios q se comunicam por REDE
+- CRIPTOGRAFIA dos loguins e senhas
+- posts armazenados em BANCOS DE DADOS 

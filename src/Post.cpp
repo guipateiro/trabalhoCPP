@@ -1,16 +1,19 @@
 #include "Post.hpp"
 
 
-Post::Post(std::string link){
+
+Post::Post(){
+	id = Id::getnextId();
+}
+
+Post::Post(std::string link):Post{}{
 	this->link = link;
+	
 }
 
 Post::~Post(){
 	
 }
-
-void Post::run(){}
-
 
 std::string Post::getLink() const{
 	return this->link;
