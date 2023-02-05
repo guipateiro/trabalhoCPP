@@ -1,8 +1,8 @@
 CFLAGS = -Wall #-Wshadow
 CC = g++
 nomePrograma = aula
-files = main.o Administrador.o Chat.o Comentario.o Historico.o Id.o Imagem.o Interface.o Listadepostagens.o Post.o Texto.o Usuario.o Usuarioadministrador.o Video.o Visitante.o
-
+files =   Comentario.o  Id.o Imagem.o  Listadepostagens.o Post.o Texto.o  Video.o Tag.o Usuario.o Visitante.o Data.o main.o
+# Administrador.o Historico.o Interface.o  Usuarioadministrador.o Chat.o
 all: $(nomePrograma)
 
 run: all
@@ -11,14 +11,18 @@ run: all
 $(nomePrograma): $(files)   #ligacao final dos .o
 	g++ -o $(nomePrograma) $(files) $(CFLAGS)
 
-Permisao.o: Permisao.hpp
-	g++ -c $< -o AccessLevel.o
+Permissao.o: Permissao.hpp
+	g++ -c $< -o $@
 
 %.o : %.cpp %.hpp  #gera todos os .o
 	$(CC) -c $< $(CFLAGS)
 
 clean:
 	rm -f *.o *.gch *.txt
+
+clear: clean
+	clear
+
 
 purge: clean 
 	rm -f $(nomePrograma)

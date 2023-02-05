@@ -1,8 +1,10 @@
 #ifndef USUARIO_HPP
 #define USUARIO_HPP
 
-#include "Listadepostagens.hpp" 
+//#include "Listadepostagens.hpp" 
 #include "Visitante.hpp"
+
+class Listadepostagens;
 
 class Usuario : public Visitante {
     public:

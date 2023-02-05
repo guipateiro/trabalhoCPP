@@ -12,10 +12,10 @@
 class Id{
 private:
     static unsigned int ID;
-    Id();
-    virtual ~Id();
 public:
     static unsigned int getnextId();
 };
+
+
 
 #endif
