@@ -3,23 +3,44 @@
 
 #include "Listadepostagens.hpp" 
 #include "Visitante.hpp"
+#include <string>
+#include "Id.hpp"
 
-class Usuario : public Visitante {
+class Usuario : virtual public Visitante {
     public:
         Usuario();
         virtual ~Usuario();
 
-        void fazPostagem(); // -> metodo -> vem da classe usuario
-        void editaPostagem(unsigned int idPostagem); //-> metodo -> vem da classe usuario e administrador
-        void removePostagem(unsigned int idPostagem); //-> metodo -> vem da classe usuario e administrador
+        virtual void fazPostagem(); // vem da classe usuario
+        virtual void editaPostagem(unsigned int idPostagem); // vem da classe usuario e administrador
+        virtual void removePostagem(unsigned int idPostagem); //  vem da classe usuario e administrador
 
-        void visualizaPropriasPostagens(); //-> metodo -> vem da classe usuario
-        void visualizaPostagensDeOutros(); //-> metodo -> vem da classe usuario (pode ver as publicas)
+        virtual void visualizaPropriasPostagens();
+        virtual void visualizaPostagensDeOutros(); // (pode ver as publicas)
 
+        void setNome(const std::string &nome);
+        std::string getNome() const;
+
+        void setEmail(const std::string &email);
+        std::string getEmail() const;
+
+        void setSenha(const std::string &senha);
+        std::string getSenha() const;
+
+        void setDataDeNascimento(const std::string &dataDeNascimento);
+        std::string getDataDeNascimento() const;
+
+        void setCelular(const unsigned long &celular);
+        unsigned long getCelular() const;
 
     private:
-        Listadepostagens *minhasPostagens; // lista de postagens do usuario -> atributo -> vem da classe usuario
-
+        
+        Listadepostagens *minhasPostagens;
+        std::string nome;
+        std::string email;
+        std::string senha;
+        std::string dataDeNascimento;
+        unsigned long celular;
 };
 
 #endif
