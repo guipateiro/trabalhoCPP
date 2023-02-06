@@ -5,8 +5,10 @@ Visitante::Visitante(){
 
 }
 
-Visitante:: ~Visitante(){
+Visitante::~Visitante(){
 
 }
 
+void Visitante::visualizaPostagensDeOutros(){
 
+}
