@@ -10,9 +10,10 @@ Video::~Video(){
 	
 }
 
+//FUNCIONA COM VIDEOS DA INTERNET, TEM Q COLOCAR O LINK DO VIDEO
+//(o desempenho é  horrivel, fica travando toda hora);
+
 void Video::run()const {
-	char head[30]{"celluloid  "};
-	char *in = strcat(head,this->getLink().c_str());
-	const char *in2 = strcat(in , " 2> lixo.txt &");
-	system(in2);
+	std::string in{"celluloid --mpv-really-quiet " + this->getLink() + " 2>/dev/null &"};
+	system(in.c_str());
 }
