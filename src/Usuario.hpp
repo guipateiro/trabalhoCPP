@@ -6,7 +6,10 @@
 #include <string>
 #include "Id.hpp"
 
+class Listadepostagens; //foward declaration
+
 class Usuario : virtual public Visitante {
+    friend std::ostream& operator<<(std::ostream& stream, const Usuario& usuario);
 
     public:
         Usuario();

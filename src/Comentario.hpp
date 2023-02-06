@@ -9,13 +9,17 @@
 
 class Comentario{
 
+	friend std::ostream& operator<<(std::ostream& stream, const Comentario& comentario);
+
 	private:
 		Usuario dono_comentario;
 		std::string texto; 
 		Data data;
 	public:
 		Comentario(/* args */);
-		~Comentario();
+		Comentario(const Usuario dono, std::string texto);
+		virtual ~Comentario();
+		bool operator==(const Comentario outro) const;
 };
 
 #endif

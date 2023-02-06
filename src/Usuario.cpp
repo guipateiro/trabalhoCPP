@@ -63,3 +63,8 @@ void Usuario::setCelular(const unsigned long &celular){
 unsigned long Usuario::getCelular() const {
     return this->celular;
 }
+
+std::ostream& operator<<(std::ostream& stream, const Usuario& usuario) {
+    stream << usuario.nome;
+    return stream;  // permitir cout << a << b << c;
+}

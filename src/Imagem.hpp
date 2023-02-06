@@ -10,7 +10,6 @@ class Imagem: public Post{
 
 		virtual void run()const ;
 	private:
-		/* data */
 };
 
 #endif
