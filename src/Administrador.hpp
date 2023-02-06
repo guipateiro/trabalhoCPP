@@ -12,7 +12,7 @@ class Administrador : virtual public Visitante {
         virtual void editaPostagem(unsigned int idPostagem); // vem da classe usuario e administrador
         virtual void removePostagem(unsigned int idPostagem); // vem da classe usuario e administrador
 
-        virtual void visualizaPostagensDeOutros(); // (pode ver as privadas e publicas)
+        virtual void visualizaPostagensDeOutros() override; // (pode ver as privadas e publicas)
 
     private:
         Listadepostagens *todasAsPostagens;

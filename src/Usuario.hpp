@@ -16,7 +16,6 @@ class Usuario : virtual public Visitante {
         virtual void removePostagem(unsigned int idPostagem); //  vem da classe usuario e administrador
 
         virtual void visualizaPropriasPostagens();
-        virtual void visualizaPostagensDeOutros(); // (pode ver as publicas)
 
         void setNome(const std::string &nome);
         std::string getNome() const;

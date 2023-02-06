@@ -24,11 +24,6 @@ void Usuario::visualizaPropriasPostagens(){ //(pode ver as publicas e privadas)
 
 }
 
-void Usuario::visualizaPostagensDeOutros(){ //(pode ver as publicas)
-
-}
-
-
 void Usuario::setNome(const std::string &nome){
     this->nome = nome;
 }
