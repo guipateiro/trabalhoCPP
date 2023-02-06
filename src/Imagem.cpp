@@ -10,10 +10,8 @@ Imagem::~Imagem(){
 	
 }
 
-
+//FUNCIONA COM IMAGENS DA INTERNET , COLOCAR URL DA IMAGEM COMO LINK
 void Imagem::run() const {
-	char head[30]{"eog "};
-	char *in = strcat(head,this->getLink().c_str());
-	const char *in2 = strcat(in , " &");
-	system(in2);
+	std::string in{"eog " + this->getLink() + " &"};
+	system(in.c_str());
 }

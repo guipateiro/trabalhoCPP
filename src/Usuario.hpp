@@ -1,12 +1,13 @@
 #ifndef USUARIO_HPP
 #define USUARIO_HPP
 
-#include "Listadepostagens.hpp" 
+//#include "Listadepostagens.hpp" 
 #include "Visitante.hpp"
 #include <string>
 #include "Id.hpp"
 
 class Usuario : virtual public Visitante {
+
     public:
         Usuario();
         virtual ~Usuario();
