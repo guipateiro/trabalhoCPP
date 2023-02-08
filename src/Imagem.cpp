@@ -6,6 +6,11 @@ Imagem::Imagem(std::string link):Post{link}{
 
 }
 
+
+Imagem::Imagem(std::string link, std::string titulo, std::string descrissao, std::string dono_post, Permissao permissao)
+	:Post{link,titulo,descrissao,dono_post,permissao}{
+}
+
 Imagem::~Imagem(){
 	
 }

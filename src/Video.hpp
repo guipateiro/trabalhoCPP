@@ -6,6 +6,7 @@
 class Video : public Post{
 	public:
 		Video(std::string link);
+		Video(std::string link, std::string titulo, std::string descrissao, std::string dono_post, Permissao permissao);
 		virtual ~Video();
 		virtual void run() const;
 	private: 

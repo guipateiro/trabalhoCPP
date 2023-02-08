@@ -14,12 +14,8 @@
 
 ### sendo mexidas pelo guilherme (basicamente a parte de posts do diagrama)
 - Post
-- Imagem    
-- Video
-- Texto    
 - Data
-- Comentario    
-- Chat    
+- Comentario      
 - Tags
 - Listadepostagens  
 
@@ -30,6 +26,9 @@
 
 ## implementada
 
+- Imagem    
+- Video
+- Texto    
 
 
 ## finalizada/testada/documentada/etc

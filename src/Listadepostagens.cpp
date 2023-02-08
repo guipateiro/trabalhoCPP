@@ -27,6 +27,7 @@ void Listadepostagens::remover(unsigned int id){
 	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
 		if((**it) == id ){
 			this->listapostagens.erase(it);
+			return;
 		}
 	}
 }

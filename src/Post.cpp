@@ -5,9 +5,18 @@ Post::Post(){
 	this->id = Id::getnextId();
 }
 
-Post::Post(std::string link):Post{}{
-	this->link = link;
+Post::Post(std::string link):link{link}{
+	Post();
 	
+}
+
+Post::Post(std::string link, std::string titulo, std::string descrissao, std::string dono_post, Permissao permissao)
+	:link{link},
+	titulo{titulo},
+	descrissao{descrissao},
+	dono_post{dono_post},
+	permissao{permissao}{
+	Post();
 }
 
 Post::~Post(){

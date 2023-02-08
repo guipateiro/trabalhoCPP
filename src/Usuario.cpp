@@ -8,8 +8,51 @@ Usuario::~Usuario(){
 
 }
 
-void Usuario::fazPostagem(){; // vem da classe usuario
+void Usuario::fazPostagem(){ // vem da classe usuario
+    std::cout << "Titulo: ";
+    std::string titulo;
+    std::getline(std::cin, titulo);
+    std::cout << "Link: ";
+    std::string link;
+    std::cin >> link;
+    std::cout << "Descrissao: ";
+    std::string descrissao;
+    std::getline(std::cin, descrissao);
+    std::cout << "Timpo de post: '0'-texto || '1'-Video || '2'-Imagem\n";
+    unsigned int tipo_post;
+    do{
+        std::cin >> tipo_post;
+        if(tipo_post > 2){
+            std::cout << "Valor invalido";
+        }
+    }while(tipo_post > 2);
+    switch (tipo_post){
+        case 0 :
+        break;
 
+        case 1 :
+            std::cout << "Privacidade do post: '0'-publica || '1'-Privada\n";
+            unsigned int permissao;
+            do{
+                std::cin >> permissao;
+                if(permissao > 1){
+                    std::cout << "Valor invalido";
+                }
+            }while(permissao > 1);
+            if (permissao == 0){
+                Video *v = new Video{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
+            }else{
+                Video *v = new Video{link,titulo,descrissao,this->nome,Permissao::PRIVATE};
+                this->minhasPostagens->adicionar(v);
+            }
+
+        break;
+
+        case 2 :
+            
+
+        break;
+    }    
 }
 
 void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e administrador

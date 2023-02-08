@@ -6,7 +6,6 @@
 #include <list>
 #include "Id.hpp"
 #include "Comentario.hpp"
-#include "Usuario.hpp"
 #include "Permissao.hpp"
 #include "Data.hpp"
 #include "Tag.hpp"
@@ -17,9 +16,10 @@ class Post{
     public:
 		Post();
         Post(std::string link);
+		Post(std::string link, std::string titulo, std::string descrissao, std::string dono_post, Permissao permissao);
         virtual ~Post();
 		
-		virtual void run() const; // = 0;
+		virtual void run() const; // = 0; // por algum motivo isso da erro em algum lugar
 		std::string getLink() const;
 		void setLink(const std::string link);
 
@@ -45,11 +45,11 @@ class Post{
 		std::string link;  // nome do arquivo
 		std::string titulo; //titulo do post
         std::string descrissao; // descrissao do post
+		std::string dono_post;	//usuario dono do post
+		Permissao permissao;  //(PUBLIC, PRIVATE) utiliza a classe enum "Permissao"
 		unsigned int id; //ID unico q é compartilhado entre dos os posts
-		Usuario dono_post;	//usuario dono do post
 		Data data;
 		//std::list<usuarios> listaPermissoes; // lista de usuarios que podem ver o post
-		Permissao permissao;  //(PUBLIC, PRIVATE) utiliza a classe enum "Permissao"
 		std::vector<Comentario> comentarios;
 		std::list<Tag> listaTags;
 

@@ -5,7 +5,7 @@
 #include "Post.hpp"
 #include "Tag.hpp"
 
-class Post; //foward declaration por causa de um ciclo 
+//class Post; //foward declaration por causa de um ciclo 
 //talvez o ciclo acabe quando os arquivos e as chamas tenham uma hierarquia
 
 class Listadepostagens {

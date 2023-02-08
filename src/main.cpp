@@ -48,7 +48,7 @@ int main(){
 	
 	
 	//cria um comentario e coloca no post de id 0
-	Comentario com(eu, "eu achei muito bom, nota 2");
+	Comentario com(eu.getNome(), "eu achei muito bom, nota 2");
 	lista.getPost(0)->adicionaComentario(com);
 
 	//faz todo o trabalho de imprimir um post, incluindo executa-lo
@@ -56,7 +56,7 @@ int main(){
 
 	lista.getPost(0)->removerComentario(com);
 
-	std:: cout << *lista.getPost(0); //sobrecarga do perador de impresao de um post;
+	std:: cout << *lista.getPost(0); 
 
 
 
