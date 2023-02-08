@@ -1,7 +1,7 @@
 #include "Usuario.hpp"
 
 Usuario::Usuario(){
-
+    this->minhasPostagens = new Listadepostagens{};
 }
 
 Usuario::~Usuario(){
@@ -27,10 +27,27 @@ void Usuario::fazPostagem(){ // vem da classe usuario
         }
     }while(tipo_post > 2);
     switch (tipo_post){
-        case 0 :
+        case 0 :{
+        std::cout << "Privacidade do post: '0'-publica || '1'-Privada\n";
+            unsigned int permissao;
+            do{
+                std::cin >> permissao;
+                if(permissao > 1){
+                    std::cout << "Valor invalido";
+                }
+            }while(permissao > 1);
+            Texto *t;
+            if (permissao == 0){
+                t = new Texto{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
+            }else{
+                t = new Texto{link,titulo,descrissao,this->nome,Permissao::PRIVATE};
+            }
+            this->minhasPostagens->adicionar(t);
+            Visitante::listageral->adicionar(t);
+        }
         break;
 
-        case 1 :
+        case 1 :{
             std::cout << "Privacidade do post: '0'-publica || '1'-Privada\n";
             unsigned int permissao;
             do{
@@ -39,18 +56,35 @@ void Usuario::fazPostagem(){ // vem da classe usuario
                     std::cout << "Valor invalido";
                 }
             }while(permissao > 1);
+            Video *v;
             if (permissao == 0){
-                Video *v = new Video{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
+                v = new Video{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
             }else{
-                Video *v = new Video{link,titulo,descrissao,this->nome,Permissao::PRIVATE};
-                this->minhasPostagens->adicionar(v);
+                v = new Video{link,titulo,descrissao,this->nome,Permissao::PRIVATE};
             }
-
+            this->minhasPostagens->adicionar(v);
+            Visitante::listageral->adicionar(v);
+        }
         break;
-
-        case 2 :
-            
-
+           
+        case 2 :{
+            std::cout << "Privacidade do post: '0'-publica || '1'-Privada\n";
+            unsigned int permissao;
+            do{
+                std::cin >> permissao;
+                if(permissao > 1){
+                    std::cout << "Valor invalido";
+                }
+            }while(permissao > 1);
+            Imagem *i;
+            if (permissao == 0){
+                i = new Imagem{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
+            }else{
+                i = new Imagem{link,titulo,descrissao,this->nome,Permissao::PRIVATE};
+            }
+            this->minhasPostagens->adicionar(i);
+            Visitante::listageral->adicionar(i);
+        }    
         break;
     }    
 }

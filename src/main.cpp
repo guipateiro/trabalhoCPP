@@ -14,7 +14,10 @@ int main(){
 	eu.setNome("guilherme");
 	Listadepostagens lista;
 	
-	//cria um post com um video ------------------------------
+	eu.fazPostagem();
+
+	std::cout << *Visitante::listageral->getPost(0);
+	/*//cria um post com um video ------------------------------
 	Video *v1 = new Video{"../media/video.mp4"};
 	lista.adicionar(v1);
 	std::cerr << v1->getLink() << "\n";
@@ -56,7 +59,7 @@ int main(){
 
 	lista.getPost(0)->removerComentario(com);
 
-	std:: cout << *lista.getPost(0); 
+	std:: cout << *lista.getPost(0); */
 
 
 

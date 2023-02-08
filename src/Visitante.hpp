@@ -2,6 +2,7 @@
 #define VISITANTE_HPP
 
 #include "Listadepostagens.hpp" 
+#include <memory>
 
 class Visitante {
     public:
@@ -10,8 +11,8 @@ class Visitante {
     
         virtual void visualizaPostagensDeOutros(); // (pode ver as publicas)
 
-    private:
         static Listadepostagens *listageral;
+    private:
 };
 
 

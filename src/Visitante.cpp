@@ -1,5 +1,6 @@
 #include "Visitante.hpp"
 
+Listadepostagens *Visitante::listageral = new Listadepostagens{};
 
 Visitante::Visitante(){
 
