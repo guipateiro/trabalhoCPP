@@ -2,6 +2,7 @@
 #define VISITANTE_HPP
 
 #include "Listadepostagens.hpp" 
+#include "Permissao.hpp"
 #include <memory>
 
 class Visitante {

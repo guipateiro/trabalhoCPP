@@ -20,3 +20,7 @@ void Imagem::run() const {
 	std::string in{"eog " + this->getLink() + " &"};
 	system(in.c_str());
 }
+
+Tipopost Imagem::geTipo() const{
+	return Tipopost::IMAGEM;
+}

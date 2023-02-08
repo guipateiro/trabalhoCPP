@@ -15,14 +15,15 @@ int main(){
 	//Listadepostagens lista;
 	
 	eu.fazPostagem();
+	eu.fazPostagem();
+	eu.fazPostagem();
+
 
 	std::cout << *Visitante::listageral->getPost(0);
 
-	//cria um post com um video ------------------------------
-	Video *v1 = new Video{"../media/video.mp4"};
-	Visitante::listageral->adicionar(v1);
-	std::cerr << v1->getLink() << "\n";
-	std::cerr << v1->getId() << "\n";
+	Visitante alguem;
+
+	alguem.visualizaPostagensDeOutros();
 	/*//cria um post com um video ------------------------------
 	Video *v1 = new Video{"../media/video.mp4"};
 	lista.adicionar(v1);

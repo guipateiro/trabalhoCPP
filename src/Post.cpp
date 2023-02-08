@@ -27,6 +27,10 @@ void Post::run() const{
 
 }
 
+Tipopost Post::geTipo() const{
+	return Tipopost::ERRO;
+}
+
 std::string Post::getLink() const{
 	return this->link;
 }
@@ -113,4 +117,8 @@ std::ostream& operator<<(std::ostream& stream, const Post& post) {
 	post.run();
 
     return stream;  // permitir cout << a << b << c;
+}
+
+std::string Post::getDono() const{
+	return this->dono_post;
 }

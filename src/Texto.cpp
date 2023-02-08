@@ -17,3 +17,7 @@ void Texto::run()const{
     std::string in{"gnome-terminal --quiet --command \"sh -c \'cat " + this->getLink() + "; exec bash\'\" --"};
 	system(in.c_str());
 }
+
+Tipopost Texto::geTipo() const {
+	return Tipopost::TEXTO;
+}

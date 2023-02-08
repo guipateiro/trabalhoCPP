@@ -9,6 +9,7 @@
 #include "Permissao.hpp"
 #include "Data.hpp"
 #include "Tag.hpp"
+#include "Tipopost.hpp"
 
 class Post{
 	friend std::ostream& operator<<(std::ostream& stream, const Post& post);
@@ -23,6 +24,7 @@ class Post{
         virtual ~Post();
 		
 		virtual void run() const; // = 0; // por algum motivo isso da erro em algum lugar
+		virtual Tipopost geTipo() const;
 		std::string getLink() const;
 		void setLink(const std::string link);
 
@@ -36,6 +38,8 @@ class Post{
 
 		void setPermissao(const Permissao permissao);
 		Permissao getPermissao() const;
+
+		std::string getDono() const;
 
 		bool operator==(const unsigned int id) const;
 		bool operator==(const Post outro) const;

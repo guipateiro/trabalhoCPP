@@ -44,3 +44,26 @@ Post *Listadepostagens::getPost(unsigned int id) const{
 	return nullptr;
 }
 
+void Listadepostagens::printList(std::string dono, Permissao permissao) const{
+	std::vector<Post*>::const_iterator it;
+	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
+		if((**it).getPermissao() == permissao || (**it).getDono() == dono){
+			std::cout << "Post(ID = " << (**it).getId() << ")[";
+			switch((*it)->geTipo()){ //Post *
+				case Tipopost::TEXTO:
+					std::cout << "TEXTO";
+				break;
+				case Tipopost::VIDEO:
+					std::cout << "VIDEO";
+				break;
+				case Tipopost::IMAGEM:
+					std::cout << "IMAGEM";
+				break;	
+				case Tipopost::ERRO:
+					std::cout << "ERRO";
+				break;
+			}
+			std::cout << "]: "<< (**it).getTitulo() << "\n";
+		}
+	}
+}

@@ -11,5 +11,5 @@ Visitante::~Visitante(){
 }
 
 void Visitante::visualizaPostagensDeOutros(){
-
+    Visitante::listageral->printList("Visitante", Permissao::PUBLIC);
 }

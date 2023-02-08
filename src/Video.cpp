@@ -19,3 +19,7 @@ void Video::run()const {
 	std::string in{"celluloid --mpv-really-quiet " + this->getLink() + " 2>/dev/null &"};
 	system(in.c_str());
 }
+
+Tipopost Video::geTipo() const{
+	return Tipopost::VIDEO;
+}

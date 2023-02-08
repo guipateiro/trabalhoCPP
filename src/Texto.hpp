@@ -10,6 +10,7 @@ class Texto : public Post{
 		Texto(std::string link, std::string titulo, std::string descrissao, std::string dono_post, Permissao permissao);
 		virtual ~Texto();
 		virtual void run() const;
+		virtual Tipopost geTipo() const;
 	private:
 		/* data */
 };

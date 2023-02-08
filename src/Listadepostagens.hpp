@@ -4,6 +4,7 @@
 #include<vector>
 #include "Post.hpp"
 #include "Tag.hpp"
+#include "Tipopost.hpp"
 
 //class Post; //foward declaration por causa de um ciclo 
 //talvez o ciclo acabe quando os arquivos e as chamas tenham uma hierarquia
@@ -16,6 +17,7 @@ class Listadepostagens {
 		void remover(Post post);
 		void remover(unsigned int id);
 		Post* getPost(unsigned int id) const;
+        void printList(std::string dono, Permissao permissao) const;
     private:
         std::vector<Post*> listapostagens;
 		std::vector<Tag> listatags;
