@@ -14,26 +14,15 @@ int main(){
 	eu.setNome("guilherme");
 	//Listadepostagens lista;
 	
-	//eu.fazPostagem();
+	eu.fazPostagem();
 
-	//std::cout << *Visitante::listageral->getPost(0);
+	std::cout << *Visitante::listageral->getPost(0);
 
 	//cria um post com um video ------------------------------
 	Video *v1 = new Video{"../media/video.mp4"};
 	Visitante::listageral->adicionar(v1);
 	std::cerr << v1->getLink() << "\n";
 	std::cerr << v1->getId() << "\n";
-	if(*Visitante::listageral->getPost(0) == 0){
-		std::cout << "sim\n";
-	}
-
-	if( 0 == *Visitante::listageral->getPost(0)){
-		std::cout << "sim\n";
-	}
-
-	if( Visitante::listageral->getPost(0) == Visitante::listageral->getPost(0)){
-		std::cout << "sim\n";
-	}
 	/*//cria um post com um video ------------------------------
 	Video *v1 = new Video{"../media/video.mp4"};
 	lista.adicionar(v1);

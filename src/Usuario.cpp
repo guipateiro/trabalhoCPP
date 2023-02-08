@@ -93,12 +93,16 @@ void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e
 
 }
 
-void Usuario::removePostagem(unsigned int idPostagem){ // vem da classe usuario e administrador
-
+void Usuario::removePostagem(unsigned int idPostagem){ // vem da classe usuario e administrador 
+    Post *meupost = this->minhasPostagens->getPost(idPostagem);
+    if (meupost != nullptr){
+        this->minhasPostagens->remover(*meupost);
+        Visitante::listageral->remover(*meupost);
+    }
 }
 
 void Usuario::visualizaPropriasPostagens(){ //(pode ver as publicas e privadas)
-
+    
 }
 
 void Usuario::setNome(const std::string &nome){
