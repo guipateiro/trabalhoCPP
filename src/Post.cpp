@@ -79,6 +79,11 @@ bool Post::operator==(const Post outro) const{
 	return 0;	
 }
 
+bool operator==(const unsigned int id, const Post& rhs){
+	if (id == rhs.id)
+		return 1;
+	return 0;		
+}
 
 void Post::adicionaComentario(const Comentario comentario){
 	this->comentarios.push_back(comentario);

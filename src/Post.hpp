@@ -12,6 +12,9 @@
 
 class Post{
 	friend std::ostream& operator<<(std::ostream& stream, const Post& post);
+	friend bool operator==(const unsigned int id, const Post& rhs);
+
+
 
     public:
 		Post();

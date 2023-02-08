@@ -14,7 +14,7 @@ void Usuario::fazPostagem(){ // vem da classe usuario
     std::getline(std::cin, titulo);
     std::cout << "Link: ";
     std::string link;
-    std::cin >> link;
+     std::getline(std::cin, link);
     std::cout << "Descrissao: ";
     std::string descrissao;
     std::getline(std::cin, descrissao);
