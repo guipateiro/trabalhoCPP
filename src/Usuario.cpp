@@ -1,4 +1,5 @@
 #include "Usuario.hpp"
+#include <ctype.h>
 
 Usuario::Usuario(){
     this->minhasPostagens = new Listadepostagens{};
@@ -11,6 +12,7 @@ Usuario::~Usuario(){
 void Usuario::fazPostagem(){ // vem da classe usuario
     std::cout << "Titulo: ";
     std::string titulo;
+	std::cin.ignore();
     std::getline(std::cin, titulo);
     std::cout << "Link: ";
     std::string link;
@@ -18,24 +20,40 @@ void Usuario::fazPostagem(){ // vem da classe usuario
     std::cout << "Descrissao: ";
     std::string descrissao;
     std::getline(std::cin, descrissao);
-    std::cout << "Timpo de post: '0'-texto || '1'-Video || '2'-Imagem\n";
+    std::cout << "Timpo de post: '1'-texto || '2'-Video || '3'-Imagem\n";
     unsigned int tipo_post;
-    do{
-        std::cin >> tipo_post;
-        if(tipo_post > 2){
-            std::cout << "Valor invalido";
-        }
-    }while(tipo_post > 2);
+    do {
+		std::string input;
+		std::cin >> input;
+		try {
+			tipo_post = stoi(input);
+			if (tipo_post != 1 && tipo_post != 2 && tipo_post != 3) {
+				std::cout << "Valor inválido. Por favor, insira um número entre 1 e 3.\n";
+			}
+		} catch (const std::invalid_argument &e) {
+			std::cout << "Valor inválido. Por favor, insira um número inteiro.\n";
+		}
+	} while (tipo_post != 1 && tipo_post != 2 && tipo_post != 3);
+
+
+	std::cout << "Privacidade do post: '0'-publica || '1'-Privada\n";
+	unsigned int permissao = -1;
+	do {
+		std::string input;
+		std::cin >> input;
+		try {
+			permissao = stoi(input);
+			if (permissao != 0 && permissao != 1) {
+				std::cout << "Valor inválido. Por favor, insira 0 ou 1." << std::endl;
+			}
+		} catch (const std::invalid_argument &e) {
+			std::cout << "Valor inválido. Por favor, insira um número inteiro." << std::endl;
+		}
+	} while (permissao != 0 && permissao != 1);
+
+
     switch (tipo_post){
-        case 0 :{
-        std::cout << "Privacidade do post: '0'-publica || '1'-Privada\n";
-            unsigned int permissao;
-            do{
-                std::cin >> permissao;
-                if(permissao > 1){
-                    std::cout << "Valor invalido";
-                }
-            }while(permissao > 1);
+        case 1 :{
             Texto *t;
             if (permissao == 0){
                 t = new Texto{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
@@ -47,15 +65,7 @@ void Usuario::fazPostagem(){ // vem da classe usuario
         }
         break;
 
-        case 1 :{
-            std::cout << "Privacidade do post: '0'-publica || '1'-Privada\n";
-            unsigned int permissao;
-            do{
-                std::cin >> permissao;
-                if(permissao > 1){
-                    std::cout << "Valor invalido";
-                }
-            }while(permissao > 1);
+        case 2 :{
             Video *v;
             if (permissao == 0){
                 v = new Video{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
@@ -67,15 +77,7 @@ void Usuario::fazPostagem(){ // vem da classe usuario
         }
         break;
            
-        case 2 :{
-            std::cout << "Privacidade do post: '0'-publica || '1'-Privada\n";
-            unsigned int permissao;
-            do{
-                std::cin >> permissao;
-                if(permissao > 1){
-                    std::cout << "Valor invalido";
-                }
-            }while(permissao > 1);
+        case 3 :{
             Imagem *i;
             if (permissao == 0){
                 i = new Imagem{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
@@ -86,7 +88,10 @@ void Usuario::fazPostagem(){ // vem da classe usuario
             Visitante::listageral->adicionar(i);
         }    
         break;
-    }    
+		
+    }   
+	//std::cin.ignore('\n'); 
+	std::cin.clear();
 }
 
 void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e administrador
