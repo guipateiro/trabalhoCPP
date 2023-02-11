@@ -9,8 +9,7 @@ Data::~Data()
 {
 }
 
-Data::Data(std::time_t time){
-	this->data = time;
+Data::Data(std::time_t data):data{data}{
 }
 
 std::time_t Data::getDataAtual(){
@@ -22,6 +21,9 @@ std::time_t Data::getData() const{
 	return this->data;
 }
 
+void Data::setData(time_t data){
+	this->data = data;
+}
 
 std::ostream& operator<<(std::ostream& stream, const Data& data) {
     std::time_t agora = data.getData();

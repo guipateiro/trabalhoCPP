@@ -2,6 +2,11 @@
 #include <iostream>
 #include <string.h>
 
+Imagem::Imagem(){
+	
+}
+
+
 Imagem::Imagem(std::string link):Post{link}{
 
 }

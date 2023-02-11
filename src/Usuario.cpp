@@ -6,20 +6,21 @@ Usuario::Usuario(){
 }
 
 Usuario::~Usuario(){
-
+	std::cout << "salvando usuario " << this->getNome() << std::endl ;
 }
+
 
 void Usuario::fazPostagem(){ // vem da classe usuario
     std::cout << "Titulo: ";
     std::string titulo;
-	std::cin.ignore();
+	//std::cin.ignore();
     std::getline(std::cin, titulo);
     std::cout << "Link: ";
     std::string link;
-     std::getline(std::cin, link);
+    std::getline(std::cin, link);
     std::cout << "Descrissao: ";
-    std::string descrissao;
-    std::getline(std::cin, descrissao);
+    std::string descricao;
+    std::getline(std::cin, descricao);
     std::cout << "Timpo de post: '1'-texto || '2'-Video || '3'-Imagem\n";
     unsigned int tipo_post;
     do {
@@ -56,9 +57,9 @@ void Usuario::fazPostagem(){ // vem da classe usuario
         case 1 :{
             Texto *t;
             if (permissao == 0){
-                t = new Texto{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
+                t = new Texto{link,titulo,descricao,this->nome,Permissao::PUBLIC};
             }else{
-                t = new Texto{link,titulo,descrissao,this->nome,Permissao::PRIVATE};
+                t = new Texto{link,titulo,descricao,this->nome,Permissao::PRIVATE};
             }
             this->minhasPostagens->adicionar(t);
             Visitante::listageral->adicionar(t);
@@ -68,9 +69,9 @@ void Usuario::fazPostagem(){ // vem da classe usuario
         case 2 :{
             Video *v;
             if (permissao == 0){
-                v = new Video{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
+                v = new Video{link,titulo,descricao,this->nome,Permissao::PUBLIC};
             }else{
-                v = new Video{link,titulo,descrissao,this->nome,Permissao::PRIVATE};
+                v = new Video{link,titulo,descricao,this->nome,Permissao::PRIVATE};
             }
             this->minhasPostagens->adicionar(v);
             Visitante::listageral->adicionar(v);
@@ -80,9 +81,9 @@ void Usuario::fazPostagem(){ // vem da classe usuario
         case 3 :{
             Imagem *i;
             if (permissao == 0){
-                i = new Imagem{link,titulo,descrissao,this->nome,Permissao::PUBLIC};
+                i = new Imagem{link,titulo,descricao,this->nome,Permissao::PUBLIC};
             }else{
-                i = new Imagem{link,titulo,descrissao,this->nome,Permissao::PRIVATE};
+                i = new Imagem{link,titulo,descricao,this->nome,Permissao::PRIVATE};
             }
             this->minhasPostagens->adicionar(i);
             Visitante::listageral->adicionar(i);
@@ -90,7 +91,7 @@ void Usuario::fazPostagem(){ // vem da classe usuario
         break;
 		
     }   
-	//std::cin.ignore('\n'); 
+	std::cin.ignore(1000, '\n'); 
 	std::cin.clear();
 }
 

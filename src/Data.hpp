@@ -14,6 +14,7 @@ class Data{
 		Data(std::time_t time);
 		virtual ~Data();
 		std::time_t getData() const;
+		void setData(time_t data);
 		static std::time_t getDataAtual();
 
 		bool operator==(const Data outro) const;

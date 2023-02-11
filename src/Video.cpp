@@ -2,6 +2,11 @@
 #include <iostream>
 #include <string.h>
 
+Video::Video(){
+	
+}
+
+
 Video::Video(std::string link):Post{link}{
 }
 

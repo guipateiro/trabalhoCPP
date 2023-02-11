@@ -2,7 +2,7 @@
 #define PERMISSAO_HPP
 
 enum class Permissao{
-  PUBLIC,
+  PUBLIC = 0,
   PRIVATE
 };
 

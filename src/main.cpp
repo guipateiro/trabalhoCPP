@@ -13,17 +13,20 @@ int main(){
 	Usuario eu;
 	eu.setNome("guilherme");
 	//Listadepostagens lista;
-	
+	Visitante::listageral->load("temp.txt");
 	eu.fazPostagem();
 	eu.fazPostagem();
-	eu.fazPostagem();
+	//eu.fazPostagem();
 
 
-	std::cout << *Visitante::listageral->getPost(0);
+	//std::cout << *Visitante::listageral->getPost(0);
 
 	Visitante alguem;
 
 	alguem.visualizaPostagensDeOutros();
+
+
+	Visitante::listageral->save("temp.txt");
 	/*//cria um post com um video ------------------------------
 	Video *v1 = new Video{"../media/video.mp4"};
 	lista.adicionar(v1);

@@ -9,10 +9,26 @@ Comentario::Comentario(const std::string dono, const std::string texto)
     Comentario();
 }
 
+Comentario::Comentario(const std::string dono, std::string texto, Data data):dono_comentario{dono},texto{texto},data{data}{
+
+}
 
 Comentario::~Comentario(){
 
 }
+
+std::string Comentario::getDono()const{
+	return this->dono_comentario;
+}
+
+std::string Comentario::getTexto()const{
+	return this->texto;
+}
+
+Data Comentario::getData()const{
+	return this->data;
+}
+
 
 
 std::ostream& operator<<(std::ostream& stream, const Comentario& comentario) {

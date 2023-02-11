@@ -15,6 +15,7 @@ private:
     static unsigned int createId();
 public:
     static unsigned int getnextId();
+	static void save();
 };
 
 

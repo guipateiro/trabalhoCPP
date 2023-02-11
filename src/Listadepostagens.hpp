@@ -3,8 +3,12 @@
 
 #include<vector>
 #include "Post.hpp"
+#include "Texto.hpp"
+#include "Video.hpp"
+#include "Imagem.hpp"
 #include "Tag.hpp"
-#include "Tipopost.hpp"
+#include <iostream>
+#include <fstream>
 
 //class Post; //foward declaration por causa de um ciclo 
 //talvez o ciclo acabe quando os arquivos e as chamas tenham uma hierarquia
@@ -13,6 +17,8 @@ class Listadepostagens {
     public:
         Listadepostagens();
         virtual ~Listadepostagens();
+		void save(const std::string diretorio);
+		void load(const std::string diretorio);
 		void adicionar(Post *post);
 		void remover(Post post);
 		void remover(unsigned int id);

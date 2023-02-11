@@ -2,10 +2,10 @@
 #define TIPOPOST_HPP
 
 enum class Tipopost{
-  TEXTO = 0,
+  ERRO = 0,
+  TEXTO,
   VIDEO,
-  IMAGEM,
-  ERRO
+  IMAGEM
 };
 
 #endif

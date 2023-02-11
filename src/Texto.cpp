@@ -1,6 +1,11 @@
 #include "Texto.hpp"
 #include <iostream>
 
+
+Texto::Texto():Post{}{
+	
+}
+
 Texto::Texto(std::string link):Post{link}{
 
 }

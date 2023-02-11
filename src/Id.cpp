@@ -11,8 +11,17 @@ unsigned int Id::createId(){
     unsigned int id;
     if(file){
         file >> id;
-        std::cout << "lido: " << id;
+        //std::cout << "lido: " << id;
     }
     file.close();
     return id;
+}
+
+void Id::save(){
+	std::ofstream file("../data/id");
+    if(file){
+        file << Id::ID;
+        std::cerr << "escrito: " << Id::ID;
+    }
+    file.close();
 }
