@@ -1,12 +1,17 @@
 #ifndef USUARIO_HPP
 #define USUARIO_HPP
 
-//#include "Listadepostagens.hpp" 
 #include "Visitante.hpp"
 #include <string>
 #include "Id.hpp"
+#include "Permissao.hpp"
+#include "Imagem.hpp"
+#include "Texto.hpp"
+#include "Video.hpp"
+
 
 class Usuario : virtual public Visitante {
+    friend std::ostream& operator<<(std::ostream& stream, const Usuario& usuario);
 
     public:
         Usuario();

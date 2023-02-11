@@ -2,8 +2,18 @@
 #include <iostream>
 #include <string.h>
 
+Imagem::Imagem(){
+	
+}
+
+
 Imagem::Imagem(std::string link):Post{link}{
 
+}
+
+
+Imagem::Imagem(std::string link, std::string titulo, std::string descrissao, std::string dono_post, Permissao permissao)
+	:Post{link,titulo,descrissao,dono_post,permissao}{
 }
 
 Imagem::~Imagem(){
@@ -14,4 +24,8 @@ Imagem::~Imagem(){
 void Imagem::run() const {
 	std::string in{"eog " + this->getLink() + " &"};
 	system(in.c_str());
+}
+
+Tipopost Imagem::geTipo() const{
+	return Tipopost::IMAGEM;
 }
