@@ -20,6 +20,7 @@ void Listadepostagens::save(const std::string diretorio){
 	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
 		(**it).save(arquivosaida);
 	}
+	arquivosaida.close();
 }
 
 void Listadepostagens::load(const std::string diretorio){
@@ -107,8 +108,8 @@ Post *Listadepostagens::getPost(unsigned int id) const{
 void Listadepostagens::printList(std::string dono, Permissao permissao) const{
 	std::vector<Post*>::const_iterator it;
 	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
-		if((**it).getPermissao() == permissao || (**it).getDono() == dono){
-			std::cout << "Post(ID = " << (**it).getId() << ")[";
+		if((*it)->getPermissao() == permissao || ((*it)->getDono() == dono) || dono == "Admin"){
+			std::cout << "Post(ID = " << (*it)->getId() << ")[";
 			switch((*it)->geTipo()){ //Post *
 				case Tipopost::TEXTO:
 					std::cout << "TEXTO";
@@ -123,7 +124,22 @@ void Listadepostagens::printList(std::string dono, Permissao permissao) const{
 					std::cout << "ERRO";
 				break;
 			}
-			std::cout << "]: "<< (**it).getTitulo() << "\n";
+			std::cout << "]: "<< (*it)->getTitulo() << "\n";
 		}
 	}
+}
+
+void Listadepostagens::saveCompact(const std::string diretorio){
+	std::ofstream arquivosaida;
+	arquivosaida.open(diretorio, std::ios::app);
+	if (!arquivosaida){
+		throw std::runtime_error("arquivo não pode ser aberto");
+	}
+	arquivosaida << this->listapostagens.size() << "\n";
+	std::cerr << "imprimindo tamanho: " << this->listapostagens.size() << "\n";
+	std::vector<Post*>::const_iterator it;
+	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
+		arquivosaida << (*it)->getId() << "\n";
+	}	
+	arquivosaida.close();
 }

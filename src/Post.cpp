@@ -49,27 +49,27 @@ void Post::save(std::ofstream &arquivosaida) const{
 void Post::load(std::ifstream &arquivoentrada){
 	//arquivoentrada.ignore('\n');
 	std::getline(arquivoentrada, this->link);
-	std::cerr << "Link:" << this->link << "\n";
+	//std::cerr << "Link:" << this->link << "\n";
 	std::getline(arquivoentrada, this->titulo);
-	std::cerr << "Titulo :" << this->titulo << "\n";
+	//std::cerr << "Titulo :" << this->titulo << "\n";
 	std::getline(arquivoentrada, this->descricao);
-	std::cerr << "Descrissao: "<< this->descricao << "\n";
+	//std::cerr << "Descrissao: "<< this->descricao << "\n";
 	std::getline(arquivoentrada, this->dono_post);
-	std::cerr << "Dono: "<< this->dono_post << "\n";
+	//std::cerr << "Dono: "<< this->dono_post << "\n";
 	int perm;
 	arquivoentrada >> perm; 
-	std::cerr << "perm: "<< perm << "\n";
+	//std::cerr << "perm: "<< perm << "\n";
 	if (perm == 0){
 		this->permissao = Permissao::PUBLIC;
 	}else{
 		this->permissao = Permissao::PRIVATE;
 	}
 	arquivoentrada >> this->id;
-	std::cerr << "id: " << this->id << "\n";
+	//std::cerr << "id: " << this->id << "\n";
 	time_t data;
 	arquivoentrada >> data; 
 	this->data.setData(data);
-	std::cerr << "data:" << this->data << "\n";
+	//std::cerr << "data:" << this->data << "\n";
 	int tam;
 	arquivoentrada >> tam;
 	for(int i = 0; i < tam ; ++i){

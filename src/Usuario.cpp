@@ -13,7 +13,6 @@ Usuario::~Usuario(){
 void Usuario::fazPostagem(){ // vem da classe usuario
     std::cout << "Titulo: ";
     std::string titulo;
-	//std::cin.ignore();
     std::getline(std::cin, titulo);
     std::cout << "Link: ";
     std::string link;
@@ -95,11 +94,11 @@ void Usuario::fazPostagem(){ // vem da classe usuario
 	std::cin.clear();
 }
 
-void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e administrador
+void Usuario::editaPostagem(const unsigned int idPostagem){ // vem da classe usuario e administrador
 
 }
 
-void Usuario::removePostagem(unsigned int idPostagem){ // vem da classe usuario e administrador 
+void Usuario::removePostagem(const unsigned int idPostagem){ // vem da classe usuario e administrador 
     Post *meupost = this->minhasPostagens->getPost(idPostagem);
     if (meupost != nullptr){
         this->minhasPostagens->remover(*meupost);
@@ -107,8 +106,53 @@ void Usuario::removePostagem(unsigned int idPostagem){ // vem da classe usuario 
     }
 }
 
-void Usuario::visualizaPropriasPostagens(){ //(pode ver as publicas e privadas)
-    
+void Usuario::visualizaPropriasPostagens() const{ //(pode ver as publicas e privadas)
+    this->minhasPostagens->printList(this->nome, Permissao::PRIVATE);
+}
+
+void Usuario::visualizaPostagensDeOutros() const{
+	Visitante::listageral->printList(this->nome, Permissao::PUBLIC);
+}
+
+void Usuario::save() const{
+	std::ofstream arquivosaida("../data/" + this->nome);
+	if (!arquivosaida){
+		throw std::runtime_error("arquivo não pode ser aberto");
+	}
+	arquivosaida << this->nome << "\n";
+	arquivosaida << this->email << "\n";
+	arquivosaida << this->senha << "\n";
+	arquivosaida << this->dataDeNascimento << "\n";
+	arquivosaida << this->celular << "\n";
+	arquivosaida.close();
+	this->minhasPostagens->saveCompact("../data/" + this->nome);
+}
+
+void Usuario::load(){
+	std::ifstream arquivoentrada("../data/" + this->nome);
+	if (!arquivoentrada){
+		throw std::runtime_error("arquivo não pode ser aberto");
+	}
+	std::getline(arquivoentrada, this->nome);
+	std::cerr << this->nome << "\n";
+	std::getline(arquivoentrada, this->email);
+	std::cerr << this->email << "\n";
+	std::getline(arquivoentrada, this->senha);
+	std::cerr << this->senha << "\n";
+	std::getline(arquivoentrada, this->dataDeNascimento);
+	std::cerr << this->dataDeNascimento << "\n";
+	arquivoentrada >> this->celular;
+	std::cerr << this->celular << "\n";
+	size_t tam = 0; 
+	arquivoentrada >> tam;
+	std::cerr << tam << "\n";
+	for (size_t i = 0; i < tam; ++i){
+		int index;
+		arquivoentrada >> index;
+		std::cerr << index << "\n";
+		this->minhasPostagens->adicionar(listageral->getPost(index));
+		std::cerr << "adicionado elemento no usuario\n";
+	}
 }
 
 void Usuario::setNome(const std::string &nome){
@@ -155,3 +199,4 @@ std::ostream& operator<<(std::ostream& stream, const Usuario& usuario) {
     stream << usuario.nome;
     return stream;  // permitir cout << a << b << c;
 }
+

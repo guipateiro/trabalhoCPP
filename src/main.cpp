@@ -10,11 +10,18 @@
 
 int main(){
 	//cria um usuario e uma lista de postagens
+	Visitante::listageral->load("../data/listaposts.txt");
 	Usuario eu;
 	eu.setNome("guilherme");
+	eu.load();
+	//eu.setEmail("guipateiro@hotmail.com");
+	//eu.setCelular(997792227);
+	//eu.setSenha("batatinha123");
+	//eu.setDataDeNascimento("-5 de trezembro de 1854");
+
+
 	//Listadepostagens lista;
-	Visitante::listageral->load("temp.txt");
-	eu.fazPostagem();
+	//eu.fazPostagem();
 	eu.fazPostagem();
 	//eu.fazPostagem();
 
@@ -26,7 +33,9 @@ int main(){
 	alguem.visualizaPostagensDeOutros();
 
 
-	Visitante::listageral->save("temp.txt");
+	Visitante::listageral->save("../data/listaposts.txt");
+
+	eu.save();
 	/*//cria um post com um video ------------------------------
 	Video *v1 = new Video{"../media/video.mp4"};
 	lista.adicionar(v1);
@@ -72,5 +81,5 @@ int main(){
 	std:: cout << *lista.getPost(0); */
 
 
-
+	Id::save();
 }

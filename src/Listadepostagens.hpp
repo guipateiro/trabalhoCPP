@@ -18,12 +18,15 @@ class Listadepostagens {
         Listadepostagens();
         virtual ~Listadepostagens();
 		void save(const std::string diretorio);
+		void saveCompact(const std::string diretorio);
 		void load(const std::string diretorio);
 		void adicionar(Post *post);
 		void remover(Post post);
 		void remover(unsigned int id);
 		Post* getPost(unsigned int id) const;
+		Post* getPost(unsigned int id, std::string dono) const;
         void printList(std::string dono, Permissao permissao) const;
+		void printList();
     private:
         std::vector<Post*> listapostagens;
 		std::vector<Tag> listatags;
