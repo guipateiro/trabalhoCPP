@@ -96,7 +96,7 @@ void Usuario::fazPostagem(){ // vem da classe usuario
 }
 
 void Usuario::editaPostagem(const unsigned int idPostagem){ // vem da classe usuario e administrador
-
+	//verificar se o post existe e eh seu
 }
 
 void Usuario::removePostagem(const unsigned int idPostagem){ // vem da classe usuario e administrador 
@@ -117,7 +117,7 @@ void Usuario::visualizaPostagensDeOutros() const{
 
 void Usuario::save() const{
 	std::ofstream arquivosaida("../data/" + this->nome);
-	if (!arquivosaida.good()){
+	if (!arquivosaida){
 		throw std::runtime_error("arquivo não pode ser aberto");
 	}
 	arquivosaida << this->nome << "\n";
@@ -130,8 +130,8 @@ void Usuario::save() const{
 }
 
 void Usuario::load(){
-	std::ifstream arquivoentrada("../data/ " + this->nome);
-  	if (!arquivoentrada.is_open()) {
+	std::ifstream arquivoentrada("../data/" + this->nome);
+  	if (!arquivoentrada) {
     	throw std::runtime_error("Arquivo não encontrado");
   	}
 	std::getline(arquivoentrada, this->nome);

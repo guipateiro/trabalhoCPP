@@ -8,7 +8,7 @@ class Interface{
 	public:
 		static void init();
 		static Usuario *login();
-		static bool administraUsuario(Usuario const *pessoa);
+		static bool administraUsuario(Usuario *pessoa);
 		static void finalize(Usuario *pessoa);
 	private:
 
