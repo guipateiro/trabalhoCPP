@@ -35,17 +35,12 @@ class Usuario : virtual public Visitante {
         void setDataDeNascimento(const std::string &dataDeNascimento);
         std::string getDataDeNascimento() const;
 
-        void setCelular(const unsigned long &celular);
-        unsigned long getCelular() const;
-
-    private:
-        
+    protected:
         Listadepostagens *minhasPostagens;
         std::string nome;
         std::string email;
         std::string senha;
         std::string dataDeNascimento;
-        unsigned long celular;
 };
 
 #endif

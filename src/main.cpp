@@ -1,5 +1,6 @@
 #include "Video.hpp"
 #include "Usuario.hpp"
+#include "UsuarioAdministrador.hpp"
 #include "Imagem.hpp"
 #include "Post.hpp"
 #include "Texto.hpp"
@@ -10,23 +11,24 @@
 
 int main(){
 	//cria um usuario e uma lista de postagens
-	Usuario eu;
+	UsuarioAdministrador eu;
 	eu.setNome("guilherme");
 	//Listadepostagens lista;
-	Visitante::listageral->load("temp.txt");
+	// Visitante::listageral->load("temp.txt");
 	eu.fazPostagem();
-	eu.fazPostagem();
+	// eu.fazPostagem();
 	//eu.fazPostagem();
 
 
 	//std::cout << *Visitante::listageral->getPost(0);
 
-	Visitante alguem;
+	eu.visualizaPostagensDeOutros();
+	// Visitante alguem;
 
-	alguem.visualizaPostagensDeOutros();
+	// alguem.visualizaPostagensDeOutros();
 
 
-	Visitante::listageral->save("temp.txt");
+	// Visitante::listageral->save("temp.txt");
 	/*//cria um post com um video ------------------------------
 	Video *v1 = new Video{"../media/video.mp4"};
 	lista.adicionar(v1);

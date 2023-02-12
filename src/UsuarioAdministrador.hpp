@@ -10,12 +10,12 @@ class UsuarioAdministrador : public Usuario, public Administrador {
         UsuarioAdministrador();
         virtual ~UsuarioAdministrador();
 
-        virtual void editaPostagem(unsigned int idPostagem) override; // vem da classe usuario e administrador
-        virtual void removePostagem(unsigned int idPostagem) override; // vem da classe usuario e administrador
+        virtual void editaPostagem(unsigned int idPostagem) override; 
+        virtual void removePostagem(unsigned int idPostagem) override; 
 
         virtual void visualizaPostagensDeOutros() override; // vem da classe visitante (pode ver as publicas)
 
-    private:
+    protected:
         // id do usuario -> atributo -> vem da classe usuario/administrador/visitante 
 
 };
