@@ -1,5 +1,6 @@
 #include "Usuario.hpp"
 #include <ctype.h>
+#include <filesystem>
 
 Usuario::Usuario(){
     this->minhasPostagens = new Listadepostagens{};
@@ -116,7 +117,7 @@ void Usuario::visualizaPostagensDeOutros() const{
 
 void Usuario::save() const{
 	std::ofstream arquivosaida("../data/" + this->nome);
-	if (!arquivosaida){
+	if (!arquivosaida.good()){
 		throw std::runtime_error("arquivo não pode ser aberto");
 	}
 	arquivosaida << this->nome << "\n";
@@ -129,27 +130,27 @@ void Usuario::save() const{
 }
 
 void Usuario::load(){
-	std::ifstream arquivoentrada("../data/" + this->nome);
-	if (!arquivoentrada){
-		throw std::runtime_error("arquivo não pode ser aberto");
-	}
+	std::ifstream arquivoentrada("../data/ " + this->nome);
+  	if (!arquivoentrada.is_open()) {
+    	throw std::runtime_error("Arquivo não encontrado");
+  	}
 	std::getline(arquivoentrada, this->nome);
-	std::cerr << this->nome << "\n";
+	//std::cerr << this->nome << "\n";
 	std::getline(arquivoentrada, this->email);
-	std::cerr << this->email << "\n";
+	//std::cerr << this->email << "\n";
 	std::getline(arquivoentrada, this->senha);
-	std::cerr << this->senha << "\n";
+	//std::cerr << this->senha << "\n";
 	std::getline(arquivoentrada, this->dataDeNascimento);
-	std::cerr << this->dataDeNascimento << "\n";
+	//std::cerr << this->dataDeNascimento << "\n";
 	arquivoentrada >> this->celular;
-	std::cerr << this->celular << "\n";
+	//std::cerr << this->celular << "\n";
 	size_t tam = 0; 
 	arquivoentrada >> tam;
-	std::cerr << tam << "\n";
+	//std::cerr << tam << "\n";
 	for (size_t i = 0; i < tam; ++i){
 		int index;
 		arquivoentrada >> index;
-		std::cerr << index << "\n";
+		//	std::cerr << index << "\n";
 		this->minhasPostagens->adicionar(listageral->getPost(index));
 		std::cerr << "adicionado elemento no usuario\n";
 	}

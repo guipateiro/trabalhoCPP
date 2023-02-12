@@ -15,6 +15,8 @@ int main(){
 	Interface::init(); //carrega dados de arquivos para o funcionamento do sistema
 	Usuario *eu = Interface::login(); // cria um usuario
 
+	std::cin.ignore(1000, '\n');
+	std::cout << "teste" << std::endl;
 	eu->fazPostagem();
 	//eu.fazPostagem();
 

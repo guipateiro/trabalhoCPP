@@ -58,7 +58,7 @@ Usuario* Interface::login(){
 					std::cout << "ERRO: as senhas nao batem\n";
 				}
 			}while(senha1 != senha2);
-			user->setNome(senha1);
+			user->setSenha(senha1);
 		}
 		break;
 
@@ -68,16 +68,17 @@ Usuario* Interface::login(){
 			inicio_login:
 			std::cout << "Digite seu nome: (para voltar digite '9')\n";
 			std::cin >> nome;
+			user->setNome(nome);
 			if (nome == "9"){
 				goto inicio_criar_conta;
 			}
-			try{
+			try {
 				user->load();
-			}catch (std::runtime_error &rr){
-				std::cout << "erro usuario nao existe ou falha nos aquivos";
+			} catch (const std::runtime_error& rr) {
+				std::cout << "Erro: usuário não existe ou houve uma falha nos arquivos." << std::endl;
 				goto inicio_login;
 			}
-			std::cin.ignore(1000, '\n');
+			//std::cin.ignore(1000, '\n');
 			std::string senha;
 			int count = 0;
 			do{
@@ -89,6 +90,9 @@ Usuario* Interface::login(){
 				}
 				count++;
 			}while(user->getSenha() != senha && count < 3);
+			if(count == 3){
+				goto inicio_login;
+			}
 		break;
 	}
 
@@ -115,4 +119,5 @@ void Interface::finalize(Usuario *pessoa){
 	Visitante::listageral->save("../data/listaposts.txt");
 	pessoa->save();
 	Id::save();
+	delete pessoa;
 }
