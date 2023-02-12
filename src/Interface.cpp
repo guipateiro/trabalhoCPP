@@ -39,10 +39,6 @@ Usuario* Interface::login(){
 			std::string email;
 			std::cin >> email;
 			user->setEmail(email);
-			std::cout << "digite seu telefone(palavra sem espacos): ";
-			unsigned long tel;
-			std::cin >> tel;
-			user->setCelular(tel);
 			std::cout << "digite saua data de nascimento: ";
 			std::string data;
 			std::cin.ignore(1000,'\n');
