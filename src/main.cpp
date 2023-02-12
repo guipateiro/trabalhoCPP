@@ -1,5 +1,6 @@
 #include "Video.hpp"
 #include "Usuario.hpp"
+#include "UsuarioAdministrador.hpp"
 #include "Imagem.hpp"
 #include "Post.hpp"
 #include "Texto.hpp"
@@ -8,7 +9,6 @@
 #include "Data.hpp"
 
 #include "Interface.hpp"
-
 
 int main(){
 	

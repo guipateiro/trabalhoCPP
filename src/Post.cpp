@@ -106,11 +106,11 @@ std::string Post::getTitulo() const{
 }
 
 
-void Post::setDescrisao(const std::string descricao){
+void Post::setDescricao(const std::string descricao){
 	this->descricao = descricao;
 }
 
-std::string Post::getDescrisao() const{
+std::string Post::getDescricao() const{
 	return this->descricao;
 }
 

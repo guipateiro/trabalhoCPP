@@ -25,7 +25,8 @@ class Listadepostagens {
 		void remover(unsigned int id);
 		Post* getPost(unsigned int id) const;
 		Post* getPost(unsigned int id, std::string dono) const;
-        void printList(std::string dono, Permissao permissao) const;
+    void printList(std::string dono, Permissao permissao) const;
+		long int getTamanho() const;
 		void printList();
     private:
         std::vector<Post*> listapostagens;

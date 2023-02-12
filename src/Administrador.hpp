@@ -3,6 +3,7 @@
 
 #include "Listadepostagens.hpp" 
 #include "Visitante.hpp"
+#include "Permissao.hpp"
 
 class Administrador : virtual public Visitante {
     public:
@@ -13,10 +14,6 @@ class Administrador : virtual public Visitante {
         virtual void removePostagem(unsigned int idPostagem); // vem da classe usuario e administrador
 
         virtual void visualizaPostagensDeOutros() override; // (pode ver as privadas e publicas)
-
-    private:
-        Listadepostagens *todasAsPostagens;
-
 };
 
 #endif

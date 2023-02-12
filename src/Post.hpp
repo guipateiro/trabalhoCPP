@@ -33,8 +33,8 @@ class Post{
 		void setTitulo(const std::string titulo);
 		std::string getTitulo() const;
 
-		void setDescrisao(const std::string descricao);
-		std::string getDescrisao() const;
+		void setDescricao(const std::string descricao);
+		std::string getDescricao() const;
 
 		unsigned int getId() const; // nao deve ter um setId pois um id nunca pode ser mudado
 
