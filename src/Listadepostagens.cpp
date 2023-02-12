@@ -134,6 +134,7 @@ void Listadepostagens::printList(std::string dono, Permissao permissao) const{
 
 long int Listadepostagens::getTamanho() const {
 	return this->listapostagens.size();
+}
 
 void Listadepostagens::saveCompact(const std::string diretorio){
 	std::ofstream arquivosaida;

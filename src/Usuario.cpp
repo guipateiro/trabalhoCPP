@@ -200,7 +200,6 @@ void Usuario::save() const{
 	arquivosaida << this->email << "\n";
 	arquivosaida << this->senha << "\n";
 	arquivosaida << this->dataDeNascimento << "\n";
-	arquivosaida << this->celular << "\n";
 	arquivosaida.close();
 	this->minhasPostagens->saveCompact("../data/" + this->nome);
 }
@@ -218,8 +217,6 @@ void Usuario::load(){
 	//std::cerr << this->senha << "\n";
 	std::getline(arquivoentrada, this->dataDeNascimento);
 	//std::cerr << this->dataDeNascimento << "\n";
-	arquivoentrada >> this->celular;
-	//std::cerr << this->celular << "\n";
 	size_t tam = 0; 
 	arquivoentrada >> tam;
 	//std::cerr << tam << "\n";
