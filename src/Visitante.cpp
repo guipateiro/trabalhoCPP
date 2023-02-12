@@ -10,6 +10,14 @@ Visitante::~Visitante(){
 
 }
 
-void Visitante::visualizaPostagensDeOutros(){
+void Visitante::visualizaPostagensDeOutros() const{
     Visitante::listageral->printList("Visitante", Permissao::PUBLIC);
+}
+
+void Visitante::save(){
+
+}
+
+void Visitante::load(){
+
 }

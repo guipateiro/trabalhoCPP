@@ -1,31 +1,31 @@
 # desenvolvimento das classes
 
+## lembra q tem q fazer o diagrama uml do codigo final (eu vo cometar profericidio)
+
+
 ## Criado 
 
-- main     
 - Administrador   
 - Historico    
 - Interface    
-- Usuario    
 - Usuarioadministrador    
-- Visitante   
 
 ## Iniciados
 
-### sendo mexidas pelo guilherme (basicamente a parte de posts do diagrama)
-- Post
-- Data
+### sendo mexidas 
+
+- main     
+- Visitante   
+- Usuario	(grande parte do codigo fica aqui)
+- Post 		(grande parte do codigo fica aqui)
 - Comentario      
 - Tags
-- Listadepostagens  
+- Listadepostagens	(grande parte do codigo fica aqui)
 
-### sendo mexidas pelo tiago 
+## bem desenvolvida
 
-- ?????????
-
-
-## implementada
-
+- Id
+- Data
 - Imagem    
 - Video
 - Texto    

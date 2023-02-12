@@ -10,7 +10,10 @@ class Visitante {
         Visitante();
         virtual ~Visitante();
     
-        virtual void visualizaPostagensDeOutros();
+
+    virtual void visualizaPostagensDeOutros() const; // (pode ver as publicas)
+		virtual void save();
+		virtual void load();
 
         static Listadepostagens *listageral;
 };
