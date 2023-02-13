@@ -125,19 +125,25 @@ void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e
     switch (opcao){
         case 0 :
             std::cout << "Titulo: ";
+            std::cin.ignore(1000, '\n');
             std::getline(std::cin, input);
+            std::cin.ignore(1000, '\n');
             meupost->setTitulo(input);
         break;
 
         case 1 :
             std::cout << "Link: ";
+            std::cin.ignore(1000, '\n');
             std::getline(std::cin, input);
+            std::cin.ignore(1000, '\n');
             meupost->setLink(input);
         break;
            
         case 2 :
             std::cout << "Descricao: ";
+            std::cin.ignore(1000, '\n');
             std::getline(std::cin, input);
+            std::cin.ignore(1000, '\n');
             meupost->setDescricao(input);
         break;
 
@@ -266,3 +272,6 @@ std::ostream& operator<<(std::ostream& stream, const Usuario& usuario) {
     return stream;  // permitir cout << a << b << c;
 }
 
+const Post *Usuario::getPost(unsigned int idPostagem) const {
+    return this->listageral->getPost(idPostagem);
+}

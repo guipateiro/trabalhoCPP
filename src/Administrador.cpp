@@ -99,3 +99,8 @@ void Administrador::visualizaPostagensDeOutros(){ // (pode ver as privadas e pub
     Administrador::listageral->printList("Visitante", Permissao::PUBLIC);
     Administrador::listageral->printList("Visitante", Permissao::PRIVATE);
 }
+
+
+const Post *Administrador::getPost(unsigned int idPostagem) const {
+    return Administrador::listageral->getPost(idPostagem);
+}
