@@ -144,3 +144,7 @@ void UsuarioAdministrador::visualizaPostagensDeOutros(){
     UsuarioAdministrador::listageral->printList("UsuarioAdministrador", Permissao::PUBLIC);
     UsuarioAdministrador::listageral->printList("UsuarioAdministrador", Permissao::PRIVATE);
 }
+
+const Post *UsuarioAdministrador::getPost(unsigned int idPostagem) const{
+    return this->listageral->getPost(idPostagem);
+}

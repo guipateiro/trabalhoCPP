@@ -14,15 +14,15 @@ int main(){
 	
 	Interface::init(); //carrega dados de arquivos para o funcionamento do sistema
 	Usuario *eu;
-	do{
-	eu = Interface::login(); // cria um usuario
+	
+	do {
+		eu = Interface::login(); // cria um usuario
 
-	//std::cin.ignore(1000, '\n');
-	std::cout << "teste" << std::endl;
-	//eu->fazPostagem();
-
-
-	}while(Interface::administraUsuario(eu));
+		//std::cin.ignore(1000, '\n');
+		std::cout << "teste" << std::endl;
+		//eu->fazPostagem();
+	} while(Interface::administraUsuario(eu));
+	
 	Interface::finalize(eu);
 
 	return 0;

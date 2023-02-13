@@ -14,6 +14,9 @@ class Administrador : virtual public Visitante {
         virtual void removePostagem(unsigned int idPostagem); // vem da classe usuario e administrador
 
         virtual void visualizaPostagensDeOutros(); // (pode ver as privadas e publicas)
+
+        virtual const Post *Administrador::getPost(unsigned int idPostagem) const;
+
 };
 
 #endif
