@@ -42,6 +42,8 @@ class Usuario : virtual public Visitante {
         void setDataDeNascimento(const std::string &dataDeNascimento);
         std::string getDataDeNascimento() const;
 
+        virtual const Post *getPost(const unsigned int idPostagem) const;
+
     protected:
         Listadepostagens *minhasPostagens;
         std::string nome;

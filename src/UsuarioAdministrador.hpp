@@ -17,6 +17,8 @@ class UsuarioAdministrador : public Usuario, public Administrador {
 		
         virtual void visualizaPostagensDeOutros() override; // vem da classe visitante (pode ver as publicas)
 
+        virtual const Post *getPost(unsigned int idPostagem) const override;
+
     protected:
         // id do usuario -> atributo -> vem da classe usuario/administrador/visitante 
 
