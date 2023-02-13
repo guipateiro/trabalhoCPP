@@ -5,9 +5,10 @@ void Interface::init(){
 }
 
 
-Usuario* Interface::login(){
+Usuario* Interface::loginUsuario(){
 	Usuario * user = new Usuario;
 	inicio_criar_conta:
+	system("clear");
 	std::cout << "ENTRE NA SUA CONTA: \n";
 	std::cout << "Novo usuario: '1' || Ja possui conta: '2'\n";
 	unsigned int novo;
@@ -101,8 +102,8 @@ Usuario* Interface::login(){
 
 bool Interface::administraUsuario(Usuario *pessoa){
 	//ler opcoes:
+	system("clear");
 	while(1){
-		system("clear");
 		std::cout << "==============================================\n";
 		std::cout << "Opcoes: \n'0' - ver posts || '1' - adicionar post || '2' - editar post || '3' - logout || '4' - finalizar programa\n";
 		std::cout << "==============================================\n";
@@ -112,102 +113,106 @@ bool Interface::administraUsuario(Usuario *pessoa){
 			std::cin >> input;
 			try {
 				opcao1 = stoi(input);
-				if (opcao1 > 3) {
+				if (opcao1 > 4) {
 					std::cout << "Valor inválido. Por favor, insira o valor entre '0' e '3'\n";
 				}
 			} catch (const std::invalid_argument &e) {
 				std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
 			}
-		}while(opcao1 > 3);
+		}while(opcao1 > 4);
 		switch (opcao1){
 			case 0:{
-			std::cout << "'1' - Visualizar seus posts || '0' - visualizar post publicos\n";
-			unsigned int opcao2;
-			do {
-				std::string input;
-				std::cin >> input;
-				try {
-					opcao2 = stoi(input);
-					if (opcao2 > 1) {
-						std::cout << "Valor inválido. Por favor, insira o valor '0' ou '1'\n";
+				std::cout << "'1' - Visualizar seus posts || '0' - visualizar post publicos\n";
+				unsigned int opcao2;
+				do {
+					std::string input;
+					std::cin >> input;
+					try {
+						opcao2 = stoi(input);
+						if (opcao2 > 1) {
+							std::cout << "Valor inválido. Por favor, insira o valor '0' ou '1'\n";
+						}
+					} catch (const std::invalid_argument &e) {
+						std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
 					}
-				} catch (const std::invalid_argument &e) {
-					std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
+				}while(opcao2 > 1);
+				//0 meus posts
+				//1 posts dos outros
+				if (opcao2 == 0){
+					pessoa->visualizaPostagensDeOutros();
+				}else{
+					pessoa->visualizaPropriasPostagens();
 				}
-			}while(opcao2 > 1);
-			//0 meus posts
-			//1 posts dos outros
-			if (opcao2 == 0){
-				pessoa->visualizaPostagensDeOutros();
-			}else{
-				pessoa->visualizaPropriasPostagens();
-			}
 
-			//	(num post) abre post
-			std::cout << "digite o id do post a ser visto: \n";
-			unsigned int id;
-			std::cin >> id;
-			//try{
-			pessoa->editaPostagem(id);
-			//} catch(acesso ao post exception){ id nao existe ou vc nao eh o dono}
+				//	(num post) abre post
+				std::cout << "digite o id do post a ser visto: \n";
+				unsigned int id;
+				std::cin >> id;
+				try{
+					pessoa->verPostagem(id);
+				} catch(IdInvalidoException& err){
+					std::cout << "Id invalido: " << err.id << " " << err.what() << "\n"; 
+				}
 
-			//	adicionar comentario
-			//	remover comentario
-			}
+				//	adicionar comentario
+				//	remover comentario
+				}
 			break;
 
 			case 1:{
-			//1 adicionar post 
-			std::cout << "tem certeza que deseja criar um post\n '1' - sim || '0' - nao\n";
-			unsigned int opcao2;
-			do {
-				std::string input;
-				std::cin >> input;
-				try {
-					opcao2 = stoi(input);
-					if (opcao2 > 1) {
-						std::cout << "Valor inválido. Por favor, insira o valor entre '0' e '3'\n";
+				//1 adicionar post 
+				std::cout << "tem certeza que deseja criar um post\n '1' - sim || '0' - nao\n";
+				unsigned int opcao2;
+				do {
+					std::string input;
+					std::cin >> input;
+					try {
+						opcao2 = stoi(input);
+						if (opcao2 > 1) {
+							std::cout << "Valor inválido. Por favor, insira o valor entre '0' e '3'\n";
+						}
+					}catch (const std::invalid_argument &e) {
+						std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
 					}
-				} catch (const std::invalid_argument &e) {
-					std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
+				}while(opcao2 > 1);
+				if(opcao2 == 1){
+					pessoa->fazPostagem();
 				}
-			}while(opcao2 > 1);
-			if(opcao2 == 1){
-				pessoa->fazPostagem();
-			}
 			}
 			break;
 
 			case 2:{
-			//2 editar post
-			//		(num post)
-			pessoa->visualizaPropriasPostagens();
-			std::cout << "digite o id do post a ser editado: \n";
-			unsigned int id;
-			std::cin >> id;
-			//try{
-			pessoa->editaPostagem(id);
-			//} catch(acesso ao post exception){ id nao existe ou vc nao eh o dono}
+				//2 editar post
+				//		(num post)
+				pessoa->visualizaPropriasPostagens();
+				std::cout << "digite o id do post a ser editado: \n";
+				unsigned int id;
+				std::cin >> id;
+				try{
+					pessoa->editaPostagem(id);
+				} catch(IdInvalidoException& err){
+					std::cout << "Id invalido: " << err.id << " " << err.what() << "\n"; 
+				}
 			}
 			break;
 
 			case 3:{
-			//3 logout 
-			pessoa->save();
-			return true;
-			}
+				//3 logout 
+				pessoa->save();
+				return true;
+				}
 			break;
 
 			case 4:{
-			//4 sair do programa
-			return false;
-			}
+				//4 sair do programa
+				return false;
+				}
 			break;
 		}		
 	}
 }
 
-void Interface::finalize(Usuario *pessoa){
+void Interface::finalize(Visitante *pessoa){
 	Visitante::listageral->save("../data/listaposts.txt");
 	pessoa->save();
 	Id::save();

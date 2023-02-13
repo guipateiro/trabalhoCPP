@@ -12,6 +12,7 @@ Usuario::~Usuario(){
 
 
 void Usuario::fazPostagem(){
+	std::cin.ignore(1000,'\n');
     std::cout << "Titulo: ";
     std::string titulo;
     std::getline(std::cin, titulo);
@@ -98,8 +99,7 @@ void Usuario::fazPostagem(){
 
 void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e administrador
     if ( idPostagem < 0 || idPostagem > this->minhasPostagens->getTamanho() - 1){
-        std::cout << "Postagem não encontrada" << std::endl;
-        return;
+        throw IdInvalidoException(idPostagem);
     }
 
     Post *meupost {this->minhasPostagens->getPost(idPostagem)};
@@ -125,18 +125,21 @@ void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e
     switch (opcao){
         case 0 :
             std::cout << "Titulo: ";
+			std::cin.ignore(1000,'\n');
             std::getline(std::cin, input);
             meupost->setTitulo(input);
         break;
 
         case 1 :
             std::cout << "Link: ";
+			std::cin.ignore(1000,'\n');
             std::getline(std::cin, input);
             meupost->setLink(input);
         break;
            
         case 2 :
             std::cout << "Descricao: ";
+			std::cin.ignore(1000,'\n');
             std::getline(std::cin, input);
             meupost->setDescricao(input);
         break;
@@ -177,7 +180,10 @@ void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e
 
 void Usuario::removePostagem(unsigned int idPostagem){
     Post *meupost {this->minhasPostagens->getPost(idPostagem)};
-    if (meupost != nullptr){
+	if(meupost == nullptr){
+		throw IdInvalidoException(idPostagem);
+	}
+    else{
         this->minhasPostagens->remover(*meupost);
         Visitante::listageral->remover(*meupost);
     }
@@ -189,6 +195,17 @@ void Usuario::visualizaPropriasPostagens() const{ //(pode ver as publicas e priv
 
 void Usuario::visualizaPostagensDeOutros() const{
 	Visitante::listageral->printList(this->nome, Permissao::PUBLIC);
+}
+
+void Usuario::verPostagem(const unsigned int id) const{
+	Post * p = Visitante::listageral->getPost(id);
+	if (p == nullptr){
+		throw IdInvalidoException(id);
+	}
+	if (p->getDono() != this->nome && p->getPermissao() == Permissao::PRIVATE ){
+		throw IdInvalidoException(id);
+	}	
+	std::cout << *p;
 }
 
 void Usuario::save() const{

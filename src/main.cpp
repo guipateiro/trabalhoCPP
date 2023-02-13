@@ -1,29 +1,29 @@
-#include "Video.hpp"
-#include "Usuario.hpp"
 #include "UsuarioAdministrador.hpp"
-#include "Imagem.hpp"
-#include "Post.hpp"
-#include "Texto.hpp"
-#include <iostream>
-#include "Listadepostagens.hpp"
-#include "Data.hpp"
-
 #include "Interface.hpp"
 
 int main(){
 	
 	Interface::init(); //carrega dados de arquivos para o funcionamento do sistema
 	Usuario *eu;
-	do{
-	eu = Interface::login(); // cria um usuario
+	UsuarioAdministrador *supereu;
+	Administrador *adm;
+	int tipousuario = 1;
+	switch(tipousuario){
+		case 1:
+			do{
+			eu = Interface::loginUsuario(); // cria um usuario
+			}while(Interface::administraUsuario(eu));
+			Interface::finalize(eu);
+		break;
+		
+		case 2:
+			Interface::finalize(supereu);
+		break;
 
-	//std::cin.ignore(1000, '\n');
-	std::cout << "teste" << std::endl;
-	//eu->fazPostagem();
-
-
-	}while(Interface::administraUsuario(eu));
-	Interface::finalize(eu);
+		case 3:
+			Interface::finalize(adm);
+		break; 
+	}	
 
 	return 0;
 }

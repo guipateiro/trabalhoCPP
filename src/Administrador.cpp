@@ -95,6 +95,14 @@ void Administrador::removePostagem(unsigned int idPostagem){ // vem da classe us
         Visitante::listageral->remover(*post);
 }
 
+void Administrador::verPostagem(const unsigned int id) const{
+	Post * p = Visitante::listageral->getPost(id);
+	if (p == nullptr){
+		throw IdInvalidoException(id);
+	}
+	std::cout << *p;
+}
+
 void Administrador::visualizaPostagensDeOutros(){ // (pode ver as privadas e publicas)
     Administrador::listageral->printList("Visitante", Permissao::PUBLIC);
     Administrador::listageral->printList("Visitante", Permissao::PRIVATE);

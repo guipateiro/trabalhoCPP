@@ -3,6 +3,7 @@
 
 #include "Usuario.hpp"
 #include "Administrador.hpp"
+#include "IdInvalidoException.hpp"
 
 
 class UsuarioAdministrador : public Usuario, public Administrador {
@@ -12,7 +13,8 @@ class UsuarioAdministrador : public Usuario, public Administrador {
 
         virtual void editaPostagem(unsigned int idPostagem) override; 
         virtual void removePostagem(unsigned int idPostagem) override; 
-
+		virtual void verPostagem(const unsigned int id) const;
+		
         virtual void visualizaPostagensDeOutros() override; // vem da classe visitante (pode ver as publicas)
 
     protected:

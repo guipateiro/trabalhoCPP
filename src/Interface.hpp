@@ -7,9 +7,9 @@ class Interface{
 
 	public:
 		static void init();
-		static Usuario *login();
+		static Usuario *loginUsuario();
 		static bool administraUsuario(Usuario *pessoa);
-		static void finalize(Usuario *pessoa);
+		static void finalize(Visitante *pessoa);
 	private:
 
 };

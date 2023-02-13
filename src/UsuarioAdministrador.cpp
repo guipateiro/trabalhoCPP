@@ -140,6 +140,14 @@ void UsuarioAdministrador::removePostagem(unsigned int idPostagem){
     }
 }
 
+void UsuarioAdministrador::verPostagem(const unsigned int id) const{
+	Post * p = Visitante::listageral->getPost(id);
+	if (p == nullptr){
+		throw IdInvalidoException(id);
+	}
+	std::cout << *p;
+}
+
 void UsuarioAdministrador::visualizaPostagensDeOutros(){
     UsuarioAdministrador::listageral->printList("UsuarioAdministrador", Permissao::PUBLIC);
     UsuarioAdministrador::listageral->printList("UsuarioAdministrador", Permissao::PRIVATE);

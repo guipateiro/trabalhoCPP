@@ -97,7 +97,6 @@ Post *Listadepostagens::getPost(unsigned int id) const{
 	std::vector<Post*>::const_iterator it;
 	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
 		if((**it) == id ){
-			//std::cerr << "retornou\n";
 			return *it;
 		}
 	}

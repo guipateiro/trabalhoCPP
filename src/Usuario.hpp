@@ -8,6 +8,7 @@
 #include "Imagem.hpp"
 #include "Texto.hpp"
 #include "Video.hpp"
+#include "IdInvalidoException.hpp"
 
 
 class Usuario : virtual public Visitante {
@@ -20,9 +21,11 @@ class Usuario : virtual public Visitante {
         virtual void fazPostagem(); // vem da classe usuario
         virtual void editaPostagem(const unsigned int idPostagem); // vem da classe usuario e administrador
         virtual void removePostagem(const unsigned int idPostagem); //  vem da classe usuario e administrador
+		virtual void verPostagem(const unsigned int id) const;
 
         virtual void visualizaPropriasPostagens() const;
 		virtual void visualizaPostagensDeOutros() const;
+
 
 		void save() const; // obrigatoriamente Usuario deve ter um nome para ser salvo
 		void load(); // obrigatoriamente Usuario deve ter um nome para ser carregado
