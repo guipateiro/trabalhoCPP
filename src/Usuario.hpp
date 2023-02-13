@@ -8,7 +8,7 @@
 #include "Imagem.hpp"
 #include "Texto.hpp"
 #include "Video.hpp"
-#include "IdInvalidoException.hpp"
+
 
 
 class Usuario : virtual public Visitante {

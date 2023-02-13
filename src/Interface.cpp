@@ -293,30 +293,29 @@ bool Interface::administraVisitante(){
 				std::cin >> id;
 
 				try {
-					const Post *post {Visitante::listageral->getPost(id)};
-					std::cout << *post << std::endl;
+					visitante->verPostagem(id);
 				}
-				catch (const std::runtime_error &e) {
-					std::cout << "Post não encontrado\n";
+				catch (const IdInvalidoException &err) {
+					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
+			
 			break;
 
 			case 1:{ //1 sair do programa
 				return false;
 			}
 			break;
-		}		
-	}
-
+		}
+	}		
 	delete visitante;
 }
 
 
 bool Interface::administraUsuario(Usuario *pessoa){
 	//ler opcoes:
+	system("clear");
 	while (true){
-		system("clear");
 		std::cout << "==============================================\n";
 		std::cout << "Opcoes: \n'0' - ver posts || '1' - adicionar post || '2' - editar post || '3' - logout || '4' - finalizar programa\n";
 		std::cout << "==============================================\n";
@@ -334,7 +333,7 @@ bool Interface::administraUsuario(Usuario *pessoa){
 			} catch (const std::invalid_argument &e) {
 				std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
 			}
-		}while(opcao1 > 3);
+		}while(opcao1 > 4);
 		switch (opcao1){
 			case 0:{
 				std::cout << "'0' - visualizar post publicos || '1' - Visualizar seus posts\n";
@@ -403,7 +402,8 @@ bool Interface::administraUsuario(Usuario *pessoa){
 				pessoa->visualizaPropriasPostagens();
 				std::cout << "digite o id do post a ser editado: \n";
 				unsigned int id;
-				std::cin >> id;try {
+				std::cin >> id;
+				try {
 					pessoa->editaPostagem(id);
 				}
 				catch (const IdInvalidoException &err) {
@@ -429,8 +429,8 @@ bool Interface::administraUsuario(Usuario *pessoa){
 
 bool Interface::administraAdministrador(Administrador *pessoa){
 	//ler opcoes:
+	system("clear");
 	while (true){
-		system("clear");
 		std::cout << "==============================================\n";
 		std::cout << "Opcoes: \n'0' - ver posts || '1' - editar post || '2' - logout || '3' - finalizar programa\n";
 		std::cout << "==============================================\n";
@@ -499,8 +499,8 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 
 bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 	//ler opcoes:
+	system("clear");
 	while (true){
-		system("clear");
 		std::cout << "==============================================\n";
 		std::cout << "Opcoes: \n'0' - ver posts || '1' - adicionar post || '2' - editar post || '3' - logout || '4' - finalizar programa\n";
 		std::cout << "==============================================\n";

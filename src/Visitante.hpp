@@ -3,7 +3,7 @@
 
 #include "Listadepostagens.hpp" 
 #include "Permissao.hpp"
-#include <memory>
+#include "IdInvalidoException.hpp"
 
 class Visitante {
     public:
@@ -11,7 +11,8 @@ class Visitante {
         virtual ~Visitante();
     
 
-    virtual void visualizaPostagensDeOutros() const; // (pode ver as publicas)
+        virtual void visualizaPostagensDeOutros() const; // (pode ver as publicas)
+        virtual void verPostagem(const unsigned int id) const;
 		virtual void save();
 		virtual void load();
 

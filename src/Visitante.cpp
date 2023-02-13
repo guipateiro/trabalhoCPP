@@ -21,3 +21,14 @@ void Visitante::save(){
 void Visitante::load(){
 
 }
+
+void Visitante::verPostagem(const unsigned int id) const{
+    Post * p = Visitante::listageral->getPost(id);
+	if (p == nullptr){
+		throw IdInvalidoException(id);
+	}
+	if (p->getPermissao() == Permissao::PRIVATE ){
+		throw IdInvalidoException(id);
+	}	
+	std::cout << *p;
+}
