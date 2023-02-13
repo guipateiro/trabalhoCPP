@@ -16,6 +16,9 @@ class UsuarioAdministrador : public Usuario, public Administrador {
 		virtual void verPostagem(const unsigned int id) const;
 		
         virtual void visualizaPostagensDeOutros() override; // vem da classe visitante (pode ver as publicas)
+		virtual void save() const; // obrigatoriamente Usuario deve ter um nome para ser salvo
+		virtual void load(); // obrigatoriamente Usuario deve ter um nome para ser carregado
+
 
         virtual const Post *getPost(unsigned int idPostagem) const override;
 

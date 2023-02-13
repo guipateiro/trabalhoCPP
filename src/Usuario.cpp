@@ -212,7 +212,7 @@ void Usuario::verPostagem(const unsigned int id) const{
 }
 
 void Usuario::save() const{
-	std::ofstream arquivosaida("../data/" + this->nome);
+	std::ofstream arquivosaida("../users/" + this->nome);
 	if (!arquivosaida){
 		throw std::runtime_error("arquivo não pode ser aberto");
 	}
@@ -221,11 +221,11 @@ void Usuario::save() const{
 	arquivosaida << this->senha << "\n";
 	arquivosaida << this->dataDeNascimento << "\n";
 	arquivosaida.close();
-	this->minhasPostagens->saveCompact("../data/" + this->nome);
+	this->minhasPostagens->saveCompact("../users/" + this->nome);
 }
 
 void Usuario::load(){
-	std::ifstream arquivoentrada("../data/" + this->nome);
+	std::ifstream arquivoentrada("../users/" + this->nome);
   	if (!arquivoentrada) {
     	throw std::runtime_error("Arquivo não encontrado");
   	}

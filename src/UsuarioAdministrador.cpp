@@ -156,3 +156,41 @@ void UsuarioAdministrador::visualizaPostagensDeOutros(){
 const Post *UsuarioAdministrador::getPost(unsigned int idPostagem) const{
     return this->listageral->getPost(idPostagem);
 }
+
+void UsuarioAdministrador::save() const{
+	std::ofstream arquivosaida("../adms/" + this->nome);
+	if (!arquivosaida){
+		throw std::runtime_error("arquivo não pode ser aberto");
+	}
+	arquivosaida << this->nome << "\n";
+	arquivosaida << this->email << "\n";
+	arquivosaida << this->senha << "\n";
+	arquivosaida << this->dataDeNascimento << "\n";
+	arquivosaida.close();
+	this->minhasPostagens->saveCompact("../adms/" + this->nome);
+}
+
+void UsuarioAdministrador::load(){
+	std::ifstream arquivoentrada("../adms/" + this->nome);
+  	if (!arquivoentrada) {
+    	throw std::runtime_error("Arquivo não encontrado");
+  	}
+	std::getline(arquivoentrada, this->nome);
+	//std::cerr << this->nome << "\n";
+	std::getline(arquivoentrada, this->email);
+	//std::cerr << this->email << "\n";
+	std::getline(arquivoentrada, this->senha);
+	//std::cerr << this->senha << "\n";
+	std::getline(arquivoentrada, this->dataDeNascimento);
+	//std::cerr << this->dataDeNascimento << "\n";
+	size_t tam = 0; 
+	arquivoentrada >> tam;
+	//std::cerr << tam << "\n";
+	for (size_t i = 0; i < tam; ++i){
+		int index;
+		arquivoentrada >> index;
+		//	std::cerr << index << "\n";
+		this->minhasPostagens->adicionar(listageral->getPost(index));
+		std::cerr << "adicionado elemento no usuario\n";
+	}
+}

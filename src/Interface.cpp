@@ -124,6 +124,140 @@ Usuario* Interface::loginUsuario(){
 	return user;
 }
 
+UsuarioAdministrador* Interface::loginUsuarioAdministrador(){
+	UsuarioAdministrador * user {new UsuarioAdministrador};
+
+	inicio_criar_conta:
+	system("clear");
+	std::cout << "ENTRE NA SUA CONTA: \n";
+	std::cout << "Novo usuario: '1' || Ja possui conta: '2'\n";
+
+	unsigned int novo;
+	
+	do {
+		std::string input;
+		std::cin >> input;
+		try {
+			novo = stoi(input);
+			if (novo != 1 && novo != 2) {
+				std::cout << "Valor inválido. Por favor, insira o valor '1' ou '2'\n";
+			}
+		} catch (const std::invalid_argument &e) {
+			std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
+		}
+	} while (novo != 1 && novo != 2);
+
+	switch(novo){
+		case 1:
+		{
+			std::cout << "\n";
+			std::cout << "NOVO USUARIO\n";
+			std::cout << "====================================================\n";
+			std::cout << "Aqui no mundo magico, vc cria um novo adminstrador como se cria um usuario comum\n";
+			std::cout << "Voce tera controle absoluto pra bisbilhotar na vida das outras pessoas\n";
+			std::cout << "====================================================\n";
+			std::cout << "digite seu nome de usuario (palavra sem espacos): ";
+			
+			std::string nome;
+			std::cin >> nome;
+			user->setNome(nome);
+			
+			std::cout << "digite seu email (palavra sem espacos): ";
+			std::string email;
+			std::cin >> email;
+			user->setEmail(email);
+
+			std::cout << "digite sua data de nascimento: ";
+			std::string data;
+			std::cin.ignore(1000,'\n');
+			std::getline(std::cin, data);
+			user->setDataDeNascimento(data);
+			
+			
+			std::string senha1;
+			std::string senha2;
+			do {
+				std::cout << "digite sua senha: ";
+				std::cin >> senha1;
+				std::cout << "repita sua senha: ";
+				std::cin >> senha2;
+				if (senha1 != senha2){
+					std::cout << "ERRO: as senhas nao batem\n";
+				}
+			} while(senha1 != senha2);
+			user->setSenha(senha1);
+		}
+		break;
+
+		case 2:
+			std::cout << "\n";
+			std::cout << "LOGIN \n";
+			std::string nome;
+			
+			inicio_login:
+			std::cout << "Digite seu nome: (para voltar digite '9')\n";
+			std::cin >> nome;
+			user->setNome(nome);
+			//std::cout << nome << std::endl;
+			
+			if (nome == "9"){
+				goto inicio_criar_conta;
+			}
+			
+			try {
+				user->load();
+			} catch (const std::runtime_error& rr) {
+				std::cout << "Erro: usuário não existe ou houve uma falha nos arquivos." << std::endl;
+				goto inicio_login;
+			}
+			
+			std::string senha;
+			int count {0};
+			std::cin.ignore(1000,'\n');
+			
+			do {
+				std::cout << "digite sua senha: ";
+				std::getline(std::cin,senha);
+				if (user->getSenha() != senha){
+					std::cout << "senha incorreta\n";
+					std::cin.clear();
+					std::cin.sync();
+				}
+				count++;
+			} while(user->getSenha() != senha && count < 4);
+			
+			if(count == 3){
+				goto inicio_login;
+			}
+		break;
+	}
+
+	return user;
+}
+
+Administrador* Interface::loginAdministrador(){
+	Administrador * user {new Administrador};
+	std::cout << "\n";
+	std::cout << "LOGIN DO ADMINISTRADOR\n";
+	std::string senha;
+	int count {0};
+	std::cin.ignore(1000,'\n');
+	do {
+		std::cout << "digite a senha do administrador (a senha eh 'admin'): ";
+		std::getline(std::cin,senha);
+		if ("admin" != senha){
+			std::cout << "senha incorreta\n";
+			std::cin.clear();
+			std::cin.sync();
+		}
+		count++;
+	} while("admin" != senha && count < 4);
+	
+	if(count == 4){
+		return nullptr;
+	}
+	return user;
+}
 
 bool Interface::administraVisitante(){
 	Visitante *visitante {new Visitante};
@@ -232,13 +366,11 @@ bool Interface::administraUsuario(Usuario *pessoa){
 				std::cout << "digite o id do post a ser visto: \n";
 				unsigned int id;
 				std::cin >> id;
-
 				try {
-					const Post *post {pessoa->getPost(id)};
-					std::cout << *post << std::endl;
+					pessoa->verPostagem(id);
 				}
-				catch (const std::runtime_error &e) {
-					std::cout << "Post não encontrado\n";
+				catch (const IdInvalidoException &err) {
+					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
@@ -271,8 +403,12 @@ bool Interface::administraUsuario(Usuario *pessoa){
 				pessoa->visualizaPropriasPostagens();
 				std::cout << "digite o id do post a ser editado: \n";
 				unsigned int id;
-				std::cin >> id;
-				pessoa->editaPostagem(id);
+				std::cin >> id;try {
+					pessoa->editaPostagem(id);
+				}
+				catch (const IdInvalidoException &err) {
+					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+				}
 			}
 			break;
 
@@ -323,11 +459,10 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 				std::cin >> id;
 
 				try {
-					const Post *post {pessoa->getPost(id)};
-					std::cout << *post << std::endl;
+					pessoa->verPostagem(id);
 				}
-				catch (const std::runtime_error &e) {
-					std::cout << "Post não encontrado\n";
+				catch (const IdInvalidoException &err) {
+					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
@@ -338,8 +473,12 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 				std::cout << "digite o id do post a ser editado: \n";
 				unsigned int id;
 				std::cin >> id;
-				
-				pessoa->editaPostagem(id);
+				try {
+					pessoa->editaPostagem(id);
+				}
+				catch (const IdInvalidoException &err) {
+					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+				}
 			}
 			break;
 
@@ -412,13 +551,11 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 				std::cout << "digite o id do post a ser visto: \n";
 				unsigned int id;
 				std::cin >> id;
-
 				try {
-					const Post *post {pessoa->getPost(id)};
-					std::cout << *post << std::endl;
+					pessoa->verPostagem(id);
 				}
-				catch (const std::runtime_error &e) {
-					std::cout << "Post não encontrado\n";
+				catch (const IdInvalidoException &err) {
+					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
@@ -448,28 +585,31 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 			break;
 
 			case 2:{
-			//2 editar post
-			//		(num post)
-			pessoa->visualizaPropriasPostagens();
-			std::cout << "digite o id do post a ser editado: \n";
-			unsigned int id;
-			std::cin >> id;
-			//try{
-			pessoa->editaPostagem(id);
-			//} catch(acesso ao post exception){ id nao existe ou vc nao eh o dono}
+				//2 editar post
+				//		(num post)
+				pessoa->visualizaPropriasPostagens();
+				std::cout << "digite o id do post a ser editado: \n";
+				unsigned int id;
+				std::cin >> id;
+				try {
+					pessoa->verPostagem(id);
+				}
+				catch (const IdInvalidoException &err) {
+					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+				}
 			}
 			break;
 
 			case 3:{
-			//3 logout 
-			pessoa->save();
-			return true;
+				//3 logout 
+				pessoa->save();
+				return true;
 			}
 			break;
 
 			case 4:{
-			//4 sair do programa
-			return false;
+				//4 sair do programa
+				return false;
 			}
 			break;
 		}		

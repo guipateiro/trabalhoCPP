@@ -12,9 +12,11 @@ class Interface{
 		Interface() = delete;
 		static void init();
 		static bool administraVisitante();
-		static Usuario *loginUsuario();
+		static Usuario* loginUsuario();
 		static bool administraUsuario(Usuario *pessoa);
+		static Administrador* loginAdministrador();
 		static bool administraAdministrador(Administrador *pessoa);
+		static UsuarioAdministrador* loginUsuarioAdministrador();
 		static bool administraUsuarioAdministrador(UsuarioAdministrador *pessoa);
 		static void finalize(Visitante *pessoa);
 	private:
