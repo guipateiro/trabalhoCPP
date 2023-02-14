@@ -132,7 +132,6 @@ void UsuarioAdministrador::verPostagem(const unsigned int id) const{
 
 void UsuarioAdministrador::visualizaPostagensDeOutros(){
     UsuarioAdministrador::listageral->printList("Admin", database::Permissao::PUBLIC);
-    UsuarioAdministrador::listageral->printList("Admin", database::Permissao::PRIVATE);
 }
 
 const database::Post *UsuarioAdministrador::getPost(const unsigned int idPostagem) const{

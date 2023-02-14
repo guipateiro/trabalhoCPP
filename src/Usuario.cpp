@@ -288,3 +288,13 @@ std::ostream& operator<<(std::ostream& stream, const Usuario& usuario) {
 const database::Post *Usuario::getPost(unsigned int idPostagem) const {
     return this->listageral->getPost(idPostagem);
 }
+
+void Usuario::fazComentario(const unsigned int idPostagem,const std::string texto){
+	database::Comentario com{this->nome, texto};
+	this->listageral->getPost(idPostagem)->adicionaComentario(com);
+}
+
+void Usuario::removeComentario (const unsigned int idPostagem){
+	database::Comentario com{this->nome, ""};
+	this->listageral->getPost(idPostagem)->removerComentario(com);
+}

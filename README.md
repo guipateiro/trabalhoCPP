@@ -15,9 +15,8 @@ postagens:
 - podem ser publicas ou privadas
 - possui titulo
 - tem uma barra de comentarios
-- tem um conjunto de tags que identificam o assunto da postagem
-- (mais coisas a serem adicionadas)
--
+- possuem a tada da postagem
+- tem uma descricao de uma linha livre
 
  
 Exitem 4 tipos de usuarios:
@@ -31,7 +30,6 @@ Exitem 4 tipos de usuarios:
 - usuario administrador: pode ver todas as postagens publicas e privadas de todos os usuarios assim como aditar/remover todas elas, pode fazer postagens novas  
 
 
-
 Comentarios  
 são listas que contem:  
 - nome de usuario do comentario  
@@ -39,19 +37,10 @@ são listas que contem:
 - o comentario em si  
 
 
-coisas q eu n pensei direito:  
-- historico mostrando postegens feitas e comentarios escritos por onrdem cronologica (mais que uma ordem já é exagero)  
-- vai ter uma lista de amizades?   
-- vai ter chat no estilo DM? (e vaiter algo a ver com a lista de mensagens)  
-- como a barra de pesquisa funciona?   
-- como agregar as postagens em albuns (pq isso tava no email q eu mandei pro paulo) 
-- loguin e senha ? (usar criptografia??)
-
-
-## algumas ideias que eu tive (fiquei maluco)  
+## algumas ideias que eu tive (fiquei maluco) e que nao precisam ser feitas
 basicamente tudo q ta descrito aqui poderia ser feito como um trabalho para suas respectivas materias
 
-- postagens que realmente sao executadas (no caso de fotos e videos)
+- postagens que realmente sao executadas (no caso de fotos e videos) - isso doi feito
 - usuarios q se comunicam por REDE
 - CRIPTOGRAFIA dos loguins e senhas
 - posts armazenados em BANCOS DE DADOS 

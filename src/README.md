@@ -1,18 +1,17 @@
 # desenvolvimento das classes
 
-## lembra q tem q fazer o diagrama uml do codigo final (eu vo cometar profericidio)
-
 
 ## Criado 
 
-- Administrador   
-- Historico    
-- Interface    
-- Usuarioadministrador    
 
 ## Iniciados
 
-### sendo mexidas 
+
+## bem desenvolvida
+
+- Interface    (grande parte do codigo fica aqui)
+
+## finalizada/testada
 
 - main     
 - Visitante   
@@ -21,14 +20,11 @@
 - Comentario      
 - Tags
 - Listadepostagens	(grande parte do codigo fica aqui)
-
-## bem desenvolvida
-
+- Administrador   
+- Historico    
+- Usuarioadministrador    
 - Id
 - Data
 - Imagem    
 - Video
 - Texto    
-
-
-## finalizada/testada/documentada/etc

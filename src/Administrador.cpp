@@ -90,9 +90,10 @@ void Administrador::editaPostagem(unsigned int idPostagem){ // vem da classe usu
 
 void Administrador::removePostagem(unsigned int idPostagem){ // vem da classe usuario e administrador
     database::Post *post {this->listageral->getPost(idPostagem)};
-    
-    if (post != nullptr)
-        Visitante::listageral->remover(*post);
+    if (post == nullptr){
+		throw database::IdInvalidoException(idPostagem);
+	}	
+    Visitante::listageral->remover(*post);
 }
 
 void Administrador::verPostagem(const unsigned int id) const{

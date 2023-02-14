@@ -8,6 +8,7 @@
 #include "Imagem.hpp"
 #include "Texto.hpp"
 #include "Video.hpp"
+#include "Comentario.hpp"
 
 
 
@@ -41,6 +42,9 @@ class Usuario : virtual public Visitante {
 
         void setDataDeNascimento(const std::string &dataDeNascimento);
         std::string getDataDeNascimento() const;
+
+		void fazComentario(const unsigned int id,const std::string texto);
+		void removeComentario (const unsigned int id);
 
         virtual const database::Post *getPost(const unsigned int idPostagem) const;
 

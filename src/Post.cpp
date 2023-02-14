@@ -77,6 +77,7 @@ void Post::load(std::ifstream &arquivoentrada){
 	for(int i = 0; i < tam ; ++i){
 		std::string dono;
 		arquivoentrada >> dono;
+		arquivoentrada.ignore(1000,'\n');
 		std::string texto;
 		std::getline(arquivoentrada,texto);
 		time_t data;

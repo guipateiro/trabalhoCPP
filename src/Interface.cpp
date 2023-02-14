@@ -314,10 +314,13 @@ bool Interface::administraVisitante(){
 
 bool Interface::administraUsuario(Usuario *pessoa){
 	//ler opcoes:
+	if (pessoa == nullptr){
+		return false;
+	}
 	system("clear");
 	while (true){
 		std::cout << "==============================================\n";
-		std::cout << "Opcoes: \n'0' - Ver posts || '1' - Adicionar post || '2' - Editar post || '3' - Logout || '4' - Finalizar programa\n";
+		std::cout << "Opcoes: \n'0' - Ver posts || '1' - Adicionar post || '2' - Editar post || '3' - Deletar post || '4' - Logout || '5' - Finalizar programa\n";
 		std::cout << "==============================================\n";
 		
 		unsigned int opcao1;
@@ -327,13 +330,13 @@ bool Interface::administraUsuario(Usuario *pessoa){
 			
 			try {
 				opcao1 = stoi(input);
-				if (opcao1 > 4) {
+				if (opcao1 > 5) {
 					std::cout << "Valor inválido. Por favor, insira o valor entre '0' e '3'\n";
 				}
 			} catch (const std::invalid_argument &e) {
 				std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
 			}
-		}while(opcao1 > 4);
+		}while(opcao1 > 5);
 		switch (opcao1){
 			case 0:{
 				std::cout << "'0' - Visualizar post públicos || '1' - Visualizar seus posts\n";
@@ -370,7 +373,35 @@ bool Interface::administraUsuario(Usuario *pessoa){
 				}
 				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
+					break;
 				}
+				std::cout << "Comentarios:\n '0' - não fazer comentario || '1' - fazer comentario || '2' - remover comentario\n";
+				unsigned int opcao3;
+
+				do {
+					std::string input;
+					std::cin >> input;
+
+					try {
+						opcao3 = stoi(input);
+						if (opcao3 > 2) {
+							std::cout << "Valor inválido. Por favor, insira o valor '0', '1 ou '2' \n";
+						}
+					} catch (const std::invalid_argument &e) {
+						std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
+					}
+				} while(opcao3 > 2);
+
+				if(opcao3 == 1){
+					std::cout << "Digite seu comentario: ";
+					std::cin.ignore(1000, '\n');
+					std::string texto;
+					std::getline(std::cin, texto);
+					pessoa->fazComentario(id, texto);
+				}else if (opcao3 == 2){
+					pessoa->removeComentario(id);
+				}
+
 			}
 			break;
 
@@ -412,13 +443,27 @@ bool Interface::administraUsuario(Usuario *pessoa){
 			}
 			break;
 
-			case 3:{ //3 logout 
+			case 3:{
+				pessoa->visualizaPropriasPostagens();
+				std::cout << "digite o id do post a ser deletado: \n";
+				unsigned int id;
+				std::cin >> id;
+				try {
+					pessoa->removePostagem(id);
+				}
+				catch (const database::IdInvalidoException &err) {
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
+				}
+			}
+			break;
+
+			case 4:{ //4 logout 
 				pessoa->save();
 				return true;
 			}
 			break;
 
-			case 4:{ //4 sair do programa
+			case 5:{ //5 sair do programa
 				return false;
 			}
 			break;
@@ -429,10 +474,13 @@ bool Interface::administraUsuario(Usuario *pessoa){
 
 bool Interface::administraAdministrador(Administrador *pessoa){
 	//ler opcoes:
+	if (pessoa == nullptr){
+		return false;
+	}
 	system("clear");
 	while (true){
 		std::cout << "==============================================\n";
-		std::cout << "Opcoes: \n'0' - ver posts || '1' - editar post || '2' - logout || '3' - finalizar programa\n";
+		std::cout << "Opcoes: \n'0' - ver posts || '1' - editar post || '2' - Deletar post ||'3' - logout || '4' - finalizar programa\n";
 		std::cout << "==============================================\n";
 		
 		unsigned int opcao1;
@@ -442,7 +490,7 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 			
 			try {
 				opcao1 = stoi(input);
-				if (opcao1 > 3) {
+				if (opcao1 > 4) {
 					std::cout << "Valor inválido. Por favor, insira o valor entre '0' e '3'\n";
 				}
 			} catch (const std::invalid_argument &e) {
@@ -482,13 +530,27 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 			}
 			break;
 
-			case 2:{ //3 logout 
+			case 2:{//remove
+				pessoa->visualizaPostagensDeOutros();
+				std::cout << "digite o id do post a ser deletado: \n";
+				unsigned int id;
+				std::cin >> id;
+				try {
+					pessoa->removePostagem(id);
+				}
+				catch (const database::IdInvalidoException &err) {
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
+				}
+			}
+			break;
+
+			case 3:{ //3 logout 
 				pessoa->save();
 				return true;
 			}
 			break;
 
-			case 3:{ //4 sair do programa
+			case 4:{ //4 sair do programa
 				return false;
 			}
 			break;
@@ -499,10 +561,13 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 
 bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 	//ler opcoes:
+	if (pessoa == nullptr){
+		return false;
+	}
 	system("clear");
 	while (true){
 		std::cout << "==============================================\n";
-		std::cout << "Opcoes: \n'0' - ver posts || '1' - adicionar post || '2' - editar post || '3' - logout || '4' - finalizar programa\n";
+		std::cout << "Opcoes: \n'0' - ver posts || '1' - adicionar post || '2' - editar post || '3' - Deletar post ||'4' - logout || '5' - finalizar programa\n";
 		std::cout << "==============================================\n";
 		
 		unsigned int opcao1;
@@ -512,13 +577,13 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 			
 			try {
 				opcao1 = stoi(input);
-				if (opcao1 > 4) {
+				if (opcao1 > 5) {
 					std::cout << "Valor inválido. Por favor, insira o valor entre '0' e '3'\n";
 				}
 			} catch (const std::invalid_argument &e) {
 				std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
 			}
-		} while (opcao1 > 4);
+		} while (opcao1 > 5);
 		
 		switch (opcao1){
 			case 0:{
@@ -556,7 +621,35 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 				}
 				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
+					break;
 				}
+				std::cout << "Comentarios:\n '0' - não fazer comentario || '1' - fazer comentario || '2' - remover comentario\n";
+				unsigned int opcao3;
+
+				do {
+					std::string input;
+					std::cin >> input;
+
+					try {
+						opcao3 = stoi(input);
+						if (opcao3 > 2) {
+							std::cout << "Valor inválido. Por favor, insira o valor '0', '1 ou '2' \n";
+						}
+					} catch (const std::invalid_argument &e) {
+						std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
+					}
+				} while(opcao3 > 2);
+
+				if(opcao3 == 1){
+					std::cout << "Digite seu comentario: ";
+					std::cin.ignore(1000, '\n');
+					std::string texto;
+					std::getline(std::cin, texto);
+					pessoa->fazComentario(id, texto);
+				}else if (opcao3 == 2){
+					pessoa->removeComentario(id);
+				}
+
 			}
 			break;
 
@@ -592,7 +685,7 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 				unsigned int id;
 				std::cin >> id;
 				try {
-					pessoa->verPostagem(id);
+					pessoa->editaPostagem(id);
 				}
 				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
@@ -601,14 +694,28 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 			break;
 
 			case 3:{
-				//3 logout 
+				pessoa->visualizaPropriasPostagens();
+				std::cout << "digite o id do post a ser deletado: \n";
+				unsigned int id;
+				std::cin >> id;
+				try {
+					pessoa->removePostagem(id);
+				}
+				catch (const database::IdInvalidoException &err) {
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
+				}
+			}
+			break;
+
+			case 4:{
+				//4 logout 
 				pessoa->save();
 				return true;
 			}
 			break;
 
-			case 4:{
-				//4 sair do programa
+			case 5:{
+				//5 sair do programa
 				return false;
 			}
 			break;
@@ -624,21 +731,30 @@ void Interface::finalize(){
 
 void Interface::finalize(Usuario *pessoa){
 	Visitante::listageral->save("../data/listaposts.txt");
-	pessoa->save();
+	if (pessoa != nullptr){
+		pessoa->save();
+		delete pessoa;
+	}
 	database::Id::save();
-	delete pessoa;
 }
 
 void Interface::finalize(Administrador*pessoa){
 	Visitante::listageral->save("../data/listaposts.txt");
-	pessoa->save();
+	if (pessoa != nullptr){
+		pessoa->save();
+		delete pessoa;
+	}
+	if (pessoa == nullptr){
+		std::cout << "Numero de tentativas excedidas, seu ip pode ter sido reportado :)\n";
+	}
 	database::Id::save();
-	delete pessoa;
 }
 
 void Interface::finalize(UsuarioAdministrador *pessoa){
 	Visitante::listageral->save("../data/listaposts.txt");
-	pessoa->save();
+	if (pessoa != nullptr){
+		pessoa->save();
+		delete pessoa;
+	}
 	database::Id::save();
-	delete pessoa;
 }
