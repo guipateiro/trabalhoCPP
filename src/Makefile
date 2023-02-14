@@ -1,6 +1,6 @@
 CFLAGS = -Wall -g #-Wshadow 
 CC = g++
-nomePrograma = aula
+nomePrograma = trabalho
 files = Id.o Imagem.o IdInvalidoException.o Listadepostagens.o Post.o Texto.o  Video.o Data.o main.o Comentario.o Usuario.o Visitante.o Administrador.o Interface.o  UsuarioAdministrador.o
 all: $(nomePrograma)
 
