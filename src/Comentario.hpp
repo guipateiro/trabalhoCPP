@@ -12,8 +12,8 @@ class Comentario{
 
 	public:
 		Comentario(/* args */);
-		Comentario(const std::string dono, std::string texto);
-		Comentario(const std::string dono, std::string texto, Data data);
+		Comentario(const std::string dono,const std::string texto);
+		Comentario(const std::string dono,const std::string texto, Data data);
 		virtual ~Comentario();
 		std::string getDono()const;
 		std::string getTexto()const;

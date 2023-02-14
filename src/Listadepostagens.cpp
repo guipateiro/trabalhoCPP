@@ -85,7 +85,7 @@ void Listadepostagens::remover(Post post){
 	}
 }
 
-void Listadepostagens::remover(unsigned int id){
+void Listadepostagens::remover(const unsigned int id){
 	std::vector<Post*>::iterator it;
 	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
 		if((**it) == id ){
@@ -95,7 +95,7 @@ void Listadepostagens::remover(unsigned int id){
 	}
 }
 
-Post *Listadepostagens::getPost(unsigned int id) const{
+Post *Listadepostagens::getPost(const unsigned int id) const{
 	std::vector<Post*>::const_iterator it;
 	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
 		if((**it) == id ){

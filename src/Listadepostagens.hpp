@@ -20,9 +20,8 @@ class Listadepostagens {
 		void load(const std::string diretorio);
 		void adicionar(Post *post);
 		void remover(Post post);
-		void remover(unsigned int id);
-		Post* getPost(unsigned int id) const;
-		Post* getPost(unsigned int id, std::string dono) const;
+		void remover(const unsigned int id);
+		Post* getPost(const unsigned int id) const;
     void printList(std::string dono, Permissao permissao) const;
 		long int getTamanho() const;
 		void printList();

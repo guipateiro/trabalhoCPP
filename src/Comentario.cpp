@@ -11,7 +11,7 @@ Comentario::Comentario(const std::string dono, const std::string texto)
     Comentario();
 }
 
-Comentario::Comentario(const std::string dono, std::string texto, Data data):dono_comentario{dono},texto{texto},data{data}{
+Comentario::Comentario(const std::string dono, const std::string texto, Data data):dono_comentario{dono},texto{texto},data{data}{
 
 }
 

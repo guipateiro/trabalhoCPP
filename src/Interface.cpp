@@ -154,7 +154,7 @@ UsuarioAdministrador* Interface::loginUsuarioAdministrador(){
 			std::cout << "NOVO USUARIO\n";
 			std::cout << "====================================================\n";
 			std::cout << "Aqui no mundo magico, vc cria um novo adminstrador como se cria um usuario comum\n";
-			std::cout << "Voce tera controle absoluto pra bisbilhotar na vida das outras pessoas\n";
+			std::cout << "Você terá controle absoluto para bisbilhotar na vida das outras pessoas\n";
 			std::cout << "====================================================\n";
 			std::cout << "digite seu nome de usuario (palavra sem espacos): ";
 			
@@ -182,7 +182,7 @@ UsuarioAdministrador* Interface::loginUsuarioAdministrador(){
 				std::cout << "repita sua senha: ";
 				std::cin >> senha2;
 				if (senha1 != senha2){
-					std::cout << "ERRO: as senhas nao batem\n";
+					std::cout << "ERRO: as senhas não batem\n";
 				}
 			} while(senha1 != senha2);
 			user->setSenha(senha1);
@@ -266,7 +266,7 @@ bool Interface::administraVisitante(){
 	while (true){
 		system("clear");
 		std::cout << "==============================================\n";
-		std::cout << "Opcoes: \n'0' - ver posts || '1' - finalizar programa\n";
+		std::cout << "Opcoes: \n'0' - Ver posts || '1' - Finalizar programa\n";
 		std::cout << "==============================================\n";
 		
 		unsigned int opcao1;
@@ -296,7 +296,7 @@ bool Interface::administraVisitante(){
 					visitante->verPostagem(id);
 				}
 				catch (const database::IdInvalidoException &err) {
-					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
 				}
 			}
 			
@@ -317,7 +317,7 @@ bool Interface::administraUsuario(Usuario *pessoa){
 	system("clear");
 	while (true){
 		std::cout << "==============================================\n";
-		std::cout << "Opcoes: \n'0' - ver posts || '1' - adicionar post || '2' - editar post || '3' - logout || '4' - finalizar programa\n";
+		std::cout << "Opcoes: \n'0' - Ver posts || '1' - Adicionar post || '2' - Editar post || '3' - Logout || '4' - Finalizar programa\n";
 		std::cout << "==============================================\n";
 		
 		unsigned int opcao1;
@@ -336,7 +336,7 @@ bool Interface::administraUsuario(Usuario *pessoa){
 		}while(opcao1 > 4);
 		switch (opcao1){
 			case 0:{
-				std::cout << "'0' - visualizar post publicos || '1' - Visualizar seus posts\n";
+				std::cout << "'0' - Visualizar post públicos || '1' - Visualizar seus posts\n";
 				unsigned int opcao2;
 
 				do {
@@ -369,13 +369,13 @@ bool Interface::administraUsuario(Usuario *pessoa){
 					pessoa->verPostagem(id);
 				}
 				catch (const database::IdInvalidoException &err) {
-					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
 
 			case 1:{ //1 adicionar post 
-				std::cout << "tem certeza que deseja criar um post\n '1' - sim || '0' - nao\n";
+				std::cout << "tem certeza que deseja criar um post\n '1' - sim || '0' - não\n";
 				unsigned int opcao2;
 				
 				do {
@@ -407,7 +407,7 @@ bool Interface::administraUsuario(Usuario *pessoa){
 					pessoa->editaPostagem(id);
 				}
 				catch (const database::IdInvalidoException &err) {
-					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
@@ -451,7 +451,7 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 		} while (opcao1 > 4);
 		
 		switch (opcao1){
-			case 0:{
+			case 0:{ // visualiza post
 				pessoa->visualizaPostagensDeOutros();
 
 				std::cout << "digite o id do post a ser visto: \n";
@@ -462,7 +462,7 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 					pessoa->verPostagem(id);
 				}
 				catch (const database::IdInvalidoException &err) {
-					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
@@ -477,7 +477,7 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 					pessoa->editaPostagem(id);
 				}
 				catch (const database::IdInvalidoException &err) {
-					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
@@ -555,13 +555,13 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 					pessoa->verPostagem(id);
 				}
 				catch (const database::IdInvalidoException &err) {
-					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
 
 			case 1:{ //1 adicionar post 
-				std::cout << "tem certeza que deseja criar um post\n '1' - sim || '0' - nao\n";
+				std::cout << "Tem certeza que deseja criar um post\n '1' - sim || '0' - não\n";
 				unsigned int opcao2;
 				
 				do {
@@ -588,14 +588,14 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 				//2 editar post
 				//		(num post)
 				pessoa->visualizaPropriasPostagens();
-				std::cout << "digite o id do post a ser editado: \n";
+				std::cout << "Digite o id do post a ser editado: \n";
 				unsigned int id;
 				std::cin >> id;
 				try {
 					pessoa->verPostagem(id);
 				}
 				catch (const database::IdInvalidoException &err) {
-					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
+					std::cout << "Id inválido: " << err.id << err.what()<<"\n";
 				}
 			}
 			break;
