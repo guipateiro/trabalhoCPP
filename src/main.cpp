@@ -1,37 +1,54 @@
-#include "Video.hpp"
-#include "Usuario.hpp"
-#include "Imagem.hpp"
-#include "Post.hpp"
-#include "Texto.hpp"
-#include <iostream>
-#include "Listadepostagens.hpp"
+#include "UsuarioAdministrador.hpp"
+#include "Interface.hpp"
 
 int main(){
-
-	Usuario eu;
-	Listadepostagens lista;
 	
-	Video *v1 = new Video{"../media/video.mp4"};
-	lista.adicionar(v1);
-	std::cerr << v1->getLink() << "\n";
-	std::cerr << v1->getId() << "\n";
+	Interface::init(); //carrega dados de arquivos para o funcionamento do sistema
+	Usuario *eu;
+	UsuarioAdministrador *supereu;
+	Administrador *adm;
+	std::cout << "Escolha o tipo de usuario:\n";
+	std::cout << "'0' - visitante || '1' - usuario || '2' - usuario administrado || '3' - administrador\n";
+	unsigned int tipousuario;
+	do {
+		std::string input;
+		std::cin >> input;
+		try {
+			tipousuario = stoi(input);
+			if (tipousuario > 3) {
+				std::cout << "Valor inválido. Por favor, insira o valor '1' ou '2'\n";
+			}
+		} catch (const std::invalid_argument &e) {
+			std::cout << "Valor inválido. Por favor, insira um número inteiro\n";
+		}
+	} while (tipousuario > 3)    ;
+	switch(tipousuario){
+		case 0: //visitante
+			while(Interface::administraVisitante()){}
+			Interface::finalize();
+		break;
 
-	Texto *t1 = new Texto{"../media/texto.txt"};
-	lista.adicionar(t1);
-	std::cerr << t1->getLink() << "\n";
-	std::cerr << t1->getId() << "\n";
+		case 1: //usuario
+			do{
+			eu = Interface::loginUsuario(); // cria um usuario
+			}while(Interface::administraUsuario(eu));
+			Interface::finalize(eu);
+		break;
+		
+		case 2: //usuarioadministrador
+			do{
+			supereu = Interface::loginUsuarioAdministrador(); // cria um usuario
+			}while(Interface::administraUsuarioAdministrador(supereu));
+			Interface::finalize(supereu);
+		break;
 
-	//teste com imagem da internet (deve ser um prato de comida)
-	Imagem *i1 = new Imagem{"https://www.shutterstock.com/shutterstock/photos/1265495377/display_1500/stock-photo-healthy-meal-prep-containers-with-chickpeas-chicken-tomatoes-cucumbers-avocados-and-broccoli-1265495377.jpg"};
-	lista.adicionar(i1);
-	std::cerr << i1->getLink() << "\n";
-	std::cerr << i1->getId() << "\n";
+		case 3: //administrador
+			do{
+			adm= Interface::loginAdministrador(); // cria um usuario
+			}while(Interface::administraAdministrador(adm));
+			Interface::finalize(adm);
+		break; 
+	}	
 
-	Post *algo = lista.getPost(0);
-	algo->run();
-	std::cerr << "fez algo ? \n";
-	lista.getPost(1)->run();
-	lista.getPost(2)->run();
-
-
+	return 0;
 }

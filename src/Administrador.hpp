@@ -3,6 +3,8 @@
 
 #include "Listadepostagens.hpp" 
 #include "Visitante.hpp"
+#include "Permissao.hpp"
+#include "IdInvalidoException.hpp"
 
 class Administrador : virtual public Visitante {
     public:
@@ -11,11 +13,11 @@ class Administrador : virtual public Visitante {
 
         virtual void editaPostagem(unsigned int idPostagem); // vem da classe usuario e administrador
         virtual void removePostagem(unsigned int idPostagem); // vem da classe usuario e administrador
+		virtual void verPostagem(const unsigned int id) const;
 
-        virtual void visualizaPostagensDeOutros() override; // (pode ver as privadas e publicas)
+        virtual void visualizaPostagensDeOutros(); // (pode ver as privadas e publicas)
 
-    private:
-        Listadepostagens *todasAsPostagens;
+        virtual const database::Post *getPost(unsigned int idPostagem) const;
 
 };
 

@@ -1,22 +1,35 @@
 #ifndef USUARIO_HPP
 #define USUARIO_HPP
 
-//#include "Listadepostagens.hpp" 
 #include "Visitante.hpp"
 #include <string>
 #include "Id.hpp"
+#include "Permissao.hpp"
+#include "Imagem.hpp"
+#include "Texto.hpp"
+#include "Video.hpp"
+#include "Comentario.hpp"
+
+
 
 class Usuario : virtual public Visitante {
+    friend std::ostream& operator<<(std::ostream& stream, const Usuario& usuario);
 
     public:
         Usuario();
         virtual ~Usuario();
 
         virtual void fazPostagem(); // vem da classe usuario
-        virtual void editaPostagem(unsigned int idPostagem); // vem da classe usuario e administrador
-        virtual void removePostagem(unsigned int idPostagem); //  vem da classe usuario e administrador
+        virtual void editaPostagem(const unsigned int idPostagem); // vem da classe usuario e administrador
+        virtual void removePostagem(const unsigned int idPostagem); //  vem da classe usuario e administrador
+		virtual void verPostagem(const unsigned int id) const;
 
-        virtual void visualizaPropriasPostagens();
+        virtual void visualizaPropriasPostagens() const;
+		virtual void visualizaPostagensDeOutros() const;
+
+
+		void save() const; // obrigatoriamente Usuario deve ter um nome para ser salvo
+		void load(); // obrigatoriamente Usuario deve ter um nome para ser carregado
 
         void setNome(const std::string &nome);
         std::string getNome() const;
@@ -30,17 +43,18 @@ class Usuario : virtual public Visitante {
         void setDataDeNascimento(const std::string &dataDeNascimento);
         std::string getDataDeNascimento() const;
 
-        void setCelular(const unsigned long &celular);
-        unsigned long getCelular() const;
+		void fazComentario(const unsigned int id,const std::string texto);
+		void removeComentario (const unsigned int id);
 
-    private:
-        
-        Listadepostagens *minhasPostagens;
+        virtual const database::Post *getPost(const unsigned int idPostagem) const;
+
+    protected:
+        database::Listadepostagens *minhasPostagens;
         std::string nome;
         std::string email;
         std::string senha;
         std::string dataDeNascimento;
-        unsigned long celular;
+
 };
 
 #endif
