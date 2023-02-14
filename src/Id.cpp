@@ -1,5 +1,7 @@
 #include "Id.hpp"
 
+namespace database{
+
 unsigned int Id::ID = Id::createId();
 
 unsigned int Id::getnextId(){
@@ -24,4 +26,6 @@ void Id::save(){
         //std::cerr << "escrito: " << Id::ID;
     }
     file.close();
+}
+
 }

@@ -16,7 +16,7 @@ class Visitante {
 		virtual void save();
 		virtual void load();
 
-        static Listadepostagens *listageral;
+        static database::Listadepostagens *listageral;
 };
 
 

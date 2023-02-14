@@ -15,7 +15,7 @@ void Administrador::editaPostagem(unsigned int idPostagem){ // vem da classe usu
         return;
     }
 
-    Post *post {this->listageral->getPost(idPostagem)};
+    database::Post *post {this->listageral->getPost(idPostagem)};
 
     std::cout <<"Escolha o que deseja editar: \n";
     std::cout <<"0 - Titulo\n";
@@ -73,9 +73,9 @@ void Administrador::editaPostagem(unsigned int idPostagem){ // vem da classe usu
             } while (permissao != 0 && permissao != 1);
             
             if ( permissao == 0 )
-                post->setPermissao(Permissao::PUBLIC);
+                post->setPermissao(database::Permissao::PUBLIC);
             else
-                post->setPermissao(Permissao::PRIVATE);
+                post->setPermissao(database::Permissao::PRIVATE);
         break;
 
         case 4 :
@@ -89,26 +89,26 @@ void Administrador::editaPostagem(unsigned int idPostagem){ // vem da classe usu
 }
 
 void Administrador::removePostagem(unsigned int idPostagem){ // vem da classe usuario e administrador
-    Post *post {this->listageral->getPost(idPostagem)};
+    database::Post *post {this->listageral->getPost(idPostagem)};
     
     if (post != nullptr)
         Visitante::listageral->remover(*post);
 }
 
 void Administrador::verPostagem(const unsigned int id) const{
-	Post * p = Visitante::listageral->getPost(id);
+	database::Post * p = Visitante::listageral->getPost(id);
 	if (p == nullptr){
-		throw IdInvalidoException(id);
+		throw database::IdInvalidoException(id);
 	}
 	std::cout << *p;
 }
 
 void Administrador::visualizaPostagensDeOutros(){ // (pode ver as privadas e publicas)
-    Administrador::listageral->printList("Visitante", Permissao::PUBLIC);
-    Administrador::listageral->printList("Visitante", Permissao::PRIVATE);
+    Administrador::listageral->printList("Visitante", database::Permissao::PUBLIC);
+    Administrador::listageral->printList("Visitante", database::Permissao::PRIVATE);
 }
 
 
-const Post *Administrador::getPost(unsigned int idPostagem) const {
+const database::Post *Administrador::getPost(unsigned int idPostagem) const {
     return Administrador::listageral->getPost(idPostagem);
 }

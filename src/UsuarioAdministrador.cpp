@@ -9,7 +9,7 @@ UsuarioAdministrador::~UsuarioAdministrador(){
 
 }
 
-void UsuarioAdministrador::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e administrador
+void UsuarioAdministrador::editaPostagem(const unsigned int idPostagem){ // vem da classe usuario e administrador
     std::cout << "Que postagem editar?" << std::endl;
     std::cout << "0 - Minhas" << std::endl;
     std::cout << "1 - Outros" << std::endl;
@@ -35,37 +35,19 @@ void UsuarioAdministrador::editaPostagem(unsigned int idPostagem){ // vem da cla
     } while (opcaoPostagem < 0 && opcaoPostagem > 1);
 
 
-    Post *post {nullptr};
-    bool idValido {idPostagem >= 0};
+    database::Post *post {nullptr};
 
-    if ( opcaoPostagem == 0 ){
-        idValido = idValido && idPostagem < this->minhasPostagens->getTamanho();
-        
-        if ( idValido )
-            post = this->minhasPostagens->getPost(idPostagem);
+    post = this->minhasPostagens->getPost(idPostagem);
 
-        else {
-            std::cout << "Postagem não encontrada" << std::endl;
-            return;
-        }
+    if(post == nullptr){
+        throw database::IdInvalidoException(idPostagem);
     }
-    else {
-        idValido = idValido && idPostagem < this->listageral->getTamanho();
-
-        if ( idValido )
-            post = this->minhasPostagens->getPost(idPostagem);
-
-        else { 
-                std::cout << "Postagem não encontrada" << std::endl;
-                return;
-        }
-    }
-
+    
     std::cout << "Escolha o que deseja editar: \n";
     std::cout << "0 - Titulo\n";
     std::cout << "1 - Link\n";
     std::cout << "2 - Descricao\n";
-    std::cout << "3 - Permissao\n";
+    std::cout << "3 - database::Permissao\n";
     std::cout << "4 - Cancelar\n";
 
     unsigned int opcao;
@@ -117,9 +99,9 @@ void UsuarioAdministrador::editaPostagem(unsigned int idPostagem){ // vem da cla
             } while (permissao != 0 && permissao != 1);
             
             if ( permissao == 0 )
-                post->setPermissao(Permissao::PUBLIC);
+                post->setPermissao(database::Permissao::PUBLIC);
             else
-                post->setPermissao(Permissao::PRIVATE);
+                post->setPermissao(database::Permissao::PRIVATE);
         break;
 
         case 4 :
@@ -132,8 +114,8 @@ void UsuarioAdministrador::editaPostagem(unsigned int idPostagem){ // vem da cla
     }
 }
 
-void UsuarioAdministrador::removePostagem(unsigned int idPostagem){
-    Post *post {this->listageral->getPost(idPostagem)};
+void UsuarioAdministrador::removePostagem(const unsigned int idPostagem){
+    database::Post *post {this->listageral->getPost(idPostagem)};
     if (post != nullptr){
         Visitante::listageral->remover(*post);
         this->minhasPostagens->remover(*post);
@@ -141,19 +123,19 @@ void UsuarioAdministrador::removePostagem(unsigned int idPostagem){
 }
 
 void UsuarioAdministrador::verPostagem(const unsigned int id) const{
-	Post * p = Visitante::listageral->getPost(id);
+	database::Post * p = Visitante::listageral->getPost(id);
 	if (p == nullptr){
-		throw IdInvalidoException(id);
+		throw database::IdInvalidoException(id);
 	}
 	std::cout << *p;
 }
 
 void UsuarioAdministrador::visualizaPostagensDeOutros(){
-    UsuarioAdministrador::listageral->printList("UsuarioAdministrador", Permissao::PUBLIC);
-    UsuarioAdministrador::listageral->printList("UsuarioAdministrador", Permissao::PRIVATE);
+    UsuarioAdministrador::listageral->printList("Admin", database::Permissao::PUBLIC);
+    UsuarioAdministrador::listageral->printList("Admin", database::Permissao::PRIVATE);
 }
 
-const Post *UsuarioAdministrador::getPost(unsigned int idPostagem) const{
+const database::Post *UsuarioAdministrador::getPost(const unsigned int idPostagem) const{
     return this->listageral->getPost(idPostagem);
 }
 
@@ -191,6 +173,6 @@ void UsuarioAdministrador::load(){
 		arquivoentrada >> index;
 		//	std::cerr << index << "\n";
 		this->minhasPostagens->adicionar(listageral->getPost(index));
-		std::cerr << "adicionado elemento no usuario\n";
+		//std::cerr << "adicionado elemento no usuario\n";
 	}
 }

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string.h>
 
+namespace database{
+
 Imagem::Imagem(){
 	
 }
@@ -12,8 +14,8 @@ Imagem::Imagem(std::string link):Post{link}{
 }
 
 
-Imagem::Imagem(std::string link, std::string titulo, std::string descrissao, std::string dono_post, Permissao permissao)
-	:Post{link,titulo,descrissao,dono_post,permissao}{
+Imagem::Imagem(std::string link, std::string titulo, std::string descricao, std::string dono_post, Permissao permissao)
+	:Post{link,titulo,descricao,dono_post,permissao}{
 }
 
 Imagem::~Imagem(){
@@ -28,4 +30,6 @@ void Imagem::run() const {
 
 Tipopost Imagem::geTipo() const{
 	return Tipopost::IMAGEM;
+}
+
 }

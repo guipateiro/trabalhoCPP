@@ -2,6 +2,8 @@
 #include <iostream>
 #include <ctime>
 
+namespace database{
+
 Post::Post(){
 	//this->id = Id::getnextId();
 }
@@ -53,7 +55,7 @@ void Post::load(std::ifstream &arquivoentrada){
 	std::getline(arquivoentrada, this->titulo);
 	//std::cerr << "Titulo :" << this->titulo << "\n";
 	std::getline(arquivoentrada, this->descricao);
-	//std::cerr << "Descrissao: "<< this->descricao << "\n";
+	//std::cerr << "descricao: "<< this->descricao << "\n";
 	std::getline(arquivoentrada, this->dono_post);
 	//std::cerr << "Dono: "<< this->dono_post << "\n";
 	int perm;
@@ -179,4 +181,6 @@ std::ostream& operator<<(std::ostream& stream, const Post& post) {
 
 std::string Post::getDono() const{
 	return this->dono_post;
+}
+
 }

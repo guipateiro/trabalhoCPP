@@ -17,7 +17,7 @@ class Administrador : virtual public Visitante {
 
         virtual void visualizaPostagensDeOutros(); // (pode ver as privadas e publicas)
 
-        virtual const Post *getPost(unsigned int idPostagem) const;
+        virtual const database::Post *getPost(unsigned int idPostagem) const;
 
 };
 

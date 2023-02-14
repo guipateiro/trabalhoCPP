@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string.h>
 
+namespace database{
+
 Video::Video(){
 	
 }
@@ -10,8 +12,8 @@ Video::Video(){
 Video::Video(std::string link):Post{link}{
 }
 
-Video::Video(std::string link, std::string titulo, std::string descrissao, std::string dono_post, Permissao permissao)
-	:Post{link,titulo,descrissao,dono_post,permissao}{
+Video::Video(std::string link, std::string titulo, std::string descricao, std::string dono_post, Permissao permissao)
+	:Post{link,titulo,descricao,dono_post,permissao}{
 }
 
 Video::~Video(){
@@ -27,4 +29,6 @@ void Video::run()const {
 
 Tipopost Video::geTipo() const{
 	return Tipopost::VIDEO;
+}
+
 }

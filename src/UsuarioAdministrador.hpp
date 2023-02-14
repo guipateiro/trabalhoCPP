@@ -11,8 +11,8 @@ class UsuarioAdministrador : public Usuario, public Administrador {
         UsuarioAdministrador();
         virtual ~UsuarioAdministrador();
 
-        virtual void editaPostagem(unsigned int idPostagem) override; 
-        virtual void removePostagem(unsigned int idPostagem) override; 
+        virtual void editaPostagem(const unsigned int idPostagem) override; 
+        virtual void removePostagem(const unsigned int idPostagem) override; 
 		virtual void verPostagem(const unsigned int id) const;
 		
         virtual void visualizaPostagensDeOutros() override; // vem da classe visitante (pode ver as publicas)
@@ -20,7 +20,7 @@ class UsuarioAdministrador : public Usuario, public Administrador {
 		virtual void load(); // obrigatoriamente Usuario deve ter um nome para ser carregado
 
 
-        virtual const Post *getPost(unsigned int idPostagem) const override;
+        virtual const database::Post *getPost(const unsigned int idPostagem) const override;
 
     protected:
         // id do usuario -> atributo -> vem da classe usuario/administrador/visitante 

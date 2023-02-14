@@ -42,10 +42,10 @@ class Usuario : virtual public Visitante {
         void setDataDeNascimento(const std::string &dataDeNascimento);
         std::string getDataDeNascimento() const;
 
-        virtual const Post *getPost(const unsigned int idPostagem) const;
+        virtual const database::Post *getPost(const unsigned int idPostagem) const;
 
     protected:
-        Listadepostagens *minhasPostagens;
+        database::Listadepostagens *minhasPostagens;
         std::string nome;
         std::string email;
         std::string senha;

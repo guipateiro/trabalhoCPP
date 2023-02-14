@@ -8,6 +8,7 @@
 // id deve ser salvo em arquivo no final de tod execussao
 // so se pode ter 1 is na memoria e seus valores sao compartilhados entre todas as classes que o usam (acho q isso é uma classe estatica)
 
+namespace database{
 
 class Id{
 private:
@@ -17,6 +18,8 @@ public:
     static unsigned int getnextId();
 	static void save();
 };
+
+}
 
 
 

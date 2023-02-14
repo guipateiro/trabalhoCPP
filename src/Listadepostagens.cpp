@@ -1,6 +1,8 @@
 #include "Listadepostagens.hpp" 
 #include <iostream>
 
+namespace database{
+
 Listadepostagens:: Listadepostagens(){
 
 }
@@ -30,7 +32,7 @@ void Listadepostagens::load(const std::string diretorio){
 	}
 	size_t tam = 0;
 	arquivoentrada >> tam;
-	std::cerr << tam << "\n";
+	//std::cerr << tam << "\n";
 	for(size_t i = 0; i < tam; ++i){
 		int tipo = -1;
 		arquivoentrada >> tipo;
@@ -43,7 +45,7 @@ void Listadepostagens::load(const std::string diretorio){
 				Texto *t = new Texto;
 				t->load(arquivoentrada);
 				this->listapostagens.push_back(t);
-				std::cerr << "adicionado elemento de arquivo \n";
+				//std::cerr << "adicionado elemento de arquivo \n";
 			}	
 			break;
 
@@ -52,7 +54,7 @@ void Listadepostagens::load(const std::string diretorio){
 				Video *v = new Video;
 				v->load(arquivoentrada);
 				this->listapostagens.push_back(v);
-				std::cerr << "adicionado elemento de arquivo \n";
+				//std::cerr << "adicionado elemento de arquivo \n";
 			}
 			break;
 
@@ -61,7 +63,7 @@ void Listadepostagens::load(const std::string diretorio){
 				Imagem *i = new Imagem;
 				i->load(arquivoentrada);
 				this->listapostagens.push_back(i);
-				std::cerr << "adicionado elemento de arquivo \n";
+				//std::cerr << "adicionado elemento de arquivo \n";
 			}
 			break;
 		}
@@ -142,10 +144,12 @@ void Listadepostagens::saveCompact(const std::string diretorio){
 		throw std::runtime_error("arquivo não pode ser aberto");
 	}
 	arquivosaida << this->listapostagens.size() << "\n";
-	std::cerr << "imprimindo tamanho: " << this->listapostagens.size() << "\n";
+	//std::cerr << "imprimindo tamanho: " << this->listapostagens.size() << "\n";
 	std::vector<Post*>::const_iterator it;
 	for(it = this->listapostagens.begin(); it < this->listapostagens.end(); ++it){
 		arquivosaida << (*it)->getId() << "\n";
 	}	
 	arquivosaida.close();
+}
+
 }

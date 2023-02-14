@@ -6,6 +6,8 @@
 #include <iostream>
 #include <string>
 
+namespace database{
+
 class Data{
 	friend std::ostream& operator<<(std::ostream& stream, const Data& data);
 
@@ -21,6 +23,8 @@ class Data{
 	private:
 		std::time_t data;
 };
+
+}
 
 
 #endif

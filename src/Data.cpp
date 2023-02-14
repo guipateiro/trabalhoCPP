@@ -1,6 +1,9 @@
 #include "Data.hpp"
 #include <ctime>
 
+
+namespace database{
+
 Data::Data(){
 	this->data = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 }
@@ -35,4 +38,6 @@ bool Data::operator==(const Data outro) const{
 	if(this->data == outro.data)
 		return 1;
 	return 0;
+}
+
 }

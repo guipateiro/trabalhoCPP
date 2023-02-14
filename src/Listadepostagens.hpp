@@ -6,12 +6,10 @@
 #include "Texto.hpp"
 #include "Video.hpp"
 #include "Imagem.hpp"
-#include "Tag.hpp"
 #include <iostream>
 #include <fstream>
 
-//class Post; //foward declaration por causa de um ciclo 
-//talvez o ciclo acabe quando os arquivos e as chamas tenham uma hierarquia
+namespace database{
 
 class Listadepostagens {
     public:
@@ -30,9 +28,8 @@ class Listadepostagens {
 		void printList();
     private:
         std::vector<Post*> listapostagens;
-		std::vector<Tag> listatags;
 	
 };
 
-
+}
 #endif

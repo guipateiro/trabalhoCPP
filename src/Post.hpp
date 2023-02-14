@@ -8,8 +8,9 @@
 #include "Comentario.hpp"
 #include "Permissao.hpp"
 #include "Data.hpp"
-#include "Tag.hpp"
 #include "Tipopost.hpp"
+
+namespace database{
 
 class Post{
 	friend std::ostream& operator<<(std::ostream& stream, const Post& post); //sobrecarga de escrita para facilitar a interface
@@ -58,8 +59,9 @@ class Post{
 		unsigned int id; //ID unico q é compartilhado entre dos os posts, gerenciado pelos contrutores e pela classe ID
 		Data data; // data que o post fo criado
 		std::vector<Comentario> comentarios; // lista de comentarios
-		std::list<Tag> listaTags; // em desuso ate agora
 
 };
+
+}
 
 #endif

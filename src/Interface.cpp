@@ -56,7 +56,7 @@ Usuario* Interface::loginUsuario(){
 			std::cin >> email;
 			user->setEmail(email);
 
-			std::cout << "digite saua data de nascimento: ";
+			std::cout << "digite sua data de nascimento: ";
 			std::string data;
 			std::cin.ignore(1000,'\n');
 			std::getline(std::cin, data);
@@ -295,7 +295,7 @@ bool Interface::administraVisitante(){
 				try {
 					visitante->verPostagem(id);
 				}
-				catch (const IdInvalidoException &err) {
+				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
@@ -368,7 +368,7 @@ bool Interface::administraUsuario(Usuario *pessoa){
 				try {
 					pessoa->verPostagem(id);
 				}
-				catch (const IdInvalidoException &err) {
+				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
@@ -406,7 +406,7 @@ bool Interface::administraUsuario(Usuario *pessoa){
 				try {
 					pessoa->editaPostagem(id);
 				}
-				catch (const IdInvalidoException &err) {
+				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
@@ -461,7 +461,7 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 				try {
 					pessoa->verPostagem(id);
 				}
-				catch (const IdInvalidoException &err) {
+				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
@@ -476,7 +476,7 @@ bool Interface::administraAdministrador(Administrador *pessoa){
 				try {
 					pessoa->editaPostagem(id);
 				}
-				catch (const IdInvalidoException &err) {
+				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
@@ -554,7 +554,7 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 				try {
 					pessoa->verPostagem(id);
 				}
-				catch (const IdInvalidoException &err) {
+				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
@@ -594,7 +594,7 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 				try {
 					pessoa->verPostagem(id);
 				}
-				catch (const IdInvalidoException &err) {
+				catch (const database::IdInvalidoException &err) {
 					std::cout << "Id invalido: " << err.id << err.what()<<"\n";
 				}
 			}
@@ -617,9 +617,28 @@ bool Interface::administraUsuarioAdministrador(UsuarioAdministrador *pessoa){
 }
 
 
-void Interface::finalize(Visitante *pessoa){
+void Interface::finalize(){
+	Visitante::listageral->save("../data/listaposts.txt");
+	database::Id::save();
+}
+
+void Interface::finalize(Usuario *pessoa){
 	Visitante::listageral->save("../data/listaposts.txt");
 	pessoa->save();
-	Id::save();
+	database::Id::save();
+	delete pessoa;
+}
+
+void Interface::finalize(Administrador*pessoa){
+	Visitante::listageral->save("../data/listaposts.txt");
+	pessoa->save();
+	database::Id::save();
+	delete pessoa;
+}
+
+void Interface::finalize(UsuarioAdministrador *pessoa){
+	Visitante::listageral->save("../data/listaposts.txt");
+	pessoa->save();
+	database::Id::save();
 	delete pessoa;
 }

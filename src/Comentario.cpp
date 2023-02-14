@@ -1,5 +1,7 @@
 #include "Comentario.hpp"
 
+namespace database{
+
 Comentario::Comentario():data{Data::getDataAtual()}{
 }
 
@@ -42,4 +44,6 @@ bool Comentario::operator==(const Comentario outro) const{
 	if ((this->dono_comentario == outro.dono_comentario) && (this->data == outro.data))
 		return 1;
 	return 0;	
+}
+
 }

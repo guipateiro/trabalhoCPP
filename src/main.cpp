@@ -25,7 +25,7 @@ int main(){
 	switch(tipousuario){
 		case 0: //visitante
 			while(Interface::administraVisitante()){}
-			Interface::finalize(nullptr);
+			Interface::finalize();
 		break;
 
 		case 1: //usuario

@@ -4,7 +4,7 @@
 #include <string>
 #include "Data.hpp"
 
-//class Usuario; //foward declaration para evitar ciclo de include
+namespace database{
 
 class Comentario{
 
@@ -24,5 +24,7 @@ class Comentario{
 		std::string texto; 
 		Data data;
 };
+
+}
 
 #endif

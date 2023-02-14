@@ -3,11 +3,10 @@
 #include <filesystem>
 
 Usuario::Usuario(){
-    this->minhasPostagens = new Listadepostagens{};
+    this->minhasPostagens = new database::Listadepostagens{};
 }
 
 Usuario::~Usuario(){
-	std::cout << "salvando usuario " << this->getNome() << std::endl ;
 }
 
 
@@ -19,7 +18,7 @@ void Usuario::fazPostagem(){
     std::cout << "Link: ";
     std::string link;
     std::getline(std::cin, link);
-    std::cout << "Descrissao: ";
+    std::cout << "descricao: ";
     std::string descricao;
     std::getline(std::cin, descricao);
     std::cout << "Timpo de post: '1'-texto || '2'-Video || '3'-Imagem\n";
@@ -56,11 +55,11 @@ void Usuario::fazPostagem(){
 
     switch (tipo_post){
         case 1 :{
-            Texto *t;
+            database::Texto *t;
             if (permissao == 0){
-                t = new Texto{link,titulo,descricao,this->nome,Permissao::PUBLIC};
+                t = new database::Texto{link,titulo,descricao,this->nome,database::Permissao::PUBLIC};
             }else{
-                t = new Texto{link,titulo,descricao,this->nome,Permissao::PRIVATE};
+                t = new database::Texto{link,titulo,descricao,this->nome,database::Permissao::PRIVATE};
             }
             this->minhasPostagens->adicionar(t);
             Visitante::listageral->adicionar(t);
@@ -68,11 +67,11 @@ void Usuario::fazPostagem(){
         break;
 
         case 2 :{
-            Video *v;
+            database::Video *v;
             if (permissao == 0){
-                v = new Video{link,titulo,descricao,this->nome,Permissao::PUBLIC};
+                v = new database::Video{link,titulo,descricao,this->nome,database::Permissao::PUBLIC};
             }else{
-                v = new Video{link,titulo,descricao,this->nome,Permissao::PRIVATE};
+                v = new database::Video{link,titulo,descricao,this->nome,database::Permissao::PRIVATE};
             }
             this->minhasPostagens->adicionar(v);
             Visitante::listageral->adicionar(v);
@@ -80,11 +79,11 @@ void Usuario::fazPostagem(){
         break;
            
         case 3 :{
-            Imagem *i;
+            database::Imagem *i;
             if (permissao == 0){
-                i = new Imagem{link,titulo,descricao,this->nome,Permissao::PUBLIC};
+                i = new database::Imagem{link,titulo,descricao,this->nome,database::Permissao::PUBLIC};
             }else{
-                i = new Imagem{link,titulo,descricao,this->nome,Permissao::PRIVATE};
+                i = new database::Imagem{link,titulo,descricao,this->nome,database::Permissao::PRIVATE};
             }
             this->minhasPostagens->adicionar(i);
             Visitante::listageral->adicionar(i);
@@ -99,16 +98,16 @@ void Usuario::fazPostagem(){
 
 void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e administrador
     if ( idPostagem < 0 || idPostagem > this->minhasPostagens->getTamanho() - 1){
-        throw IdInvalidoException(idPostagem);
+        throw database::IdInvalidoException(idPostagem);
     }
 
-    Post *meupost {this->minhasPostagens->getPost(idPostagem)};
+    database::Post *meupost {this->minhasPostagens->getPost(idPostagem)};
 
     std::cout <<"Escolha o que deseja editar: \n";
     std::cout <<"0 - Titulo\n";
     std::cout <<"1 - Link\n";
     std::cout <<"2 - Descricao\n";
-    std::cout <<"3 - Permissao\n";
+    std::cout <<"3 - database::Permissao\n";
     std::cout <<"4 - Cancelar\n";
 
     unsigned int opcao;
@@ -166,9 +165,9 @@ void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e
             } while (permissao != 0 && permissao != 1);
             
             if ( permissao == 0 )
-                meupost->setPermissao(Permissao::PUBLIC);
+                meupost->setPermissao(database::Permissao::PUBLIC);
             else
-                meupost->setPermissao(Permissao::PRIVATE);
+                meupost->setPermissao(database::Permissao::PRIVATE);
         break;
 
         case 4 :
@@ -182,9 +181,9 @@ void Usuario::editaPostagem(unsigned int idPostagem){ // vem da classe usuario e
 }
 
 void Usuario::removePostagem(unsigned int idPostagem){
-    Post *meupost {this->minhasPostagens->getPost(idPostagem)};
+    database::Post *meupost {this->minhasPostagens->getPost(idPostagem)};
 	if(meupost == nullptr){
-		throw IdInvalidoException(idPostagem);
+		throw database::IdInvalidoException(idPostagem);
 	}
     else{
         this->minhasPostagens->remover(*meupost);
@@ -193,20 +192,20 @@ void Usuario::removePostagem(unsigned int idPostagem){
 }
 
 void Usuario::visualizaPropriasPostagens() const{ //(pode ver as publicas e privadas)
-    this->minhasPostagens->printList(this->nome, Permissao::PRIVATE);
+    this->minhasPostagens->printList(this->nome, database::Permissao::PRIVATE);
 }
 
 void Usuario::visualizaPostagensDeOutros() const{
-	Visitante::listageral->printList(this->nome, Permissao::PUBLIC);
+	Visitante::listageral->printList(this->nome, database::Permissao::PUBLIC);
 }
 
 void Usuario::verPostagem(const unsigned int id) const{
-	Post * p = Visitante::listageral->getPost(id);
+	database::Post * p = Visitante::listageral->getPost(id);
 	if (p == nullptr){
-		throw IdInvalidoException(id);
+		throw database::IdInvalidoException(id);
 	}
-	if (p->getDono() != this->nome && p->getPermissao() == Permissao::PRIVATE ){
-		throw IdInvalidoException(id);
+	if (p->getDono() != this->nome && p->getPermissao() == database::Permissao::PRIVATE ){
+		throw database::IdInvalidoException(id);
 	}	
 	std::cout << *p;
 }
@@ -245,7 +244,7 @@ void Usuario::load(){
 		arquivoentrada >> index;
 		//	std::cerr << index << "\n";
 		this->minhasPostagens->adicionar(listageral->getPost(index));
-		std::cerr << "adicionado elemento no usuario\n";
+		//std::cerr << "adicionado elemento no usuario\n";
 	}
 }
 
@@ -286,6 +285,6 @@ std::ostream& operator<<(std::ostream& stream, const Usuario& usuario) {
     return stream;  // permitir cout << a << b << c;
 }
 
-const Post *Usuario::getPost(unsigned int idPostagem) const {
+const database::Post *Usuario::getPost(unsigned int idPostagem) const {
     return this->listageral->getPost(idPostagem);
 }

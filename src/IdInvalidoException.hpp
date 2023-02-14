@@ -3,6 +3,8 @@
 
 #include <stdexcept>
 
+namespace database{
+
 class IdInvalidoException : public std::runtime_error{
     public:
         const unsigned long id;
@@ -10,4 +12,7 @@ class IdInvalidoException : public std::runtime_error{
         explicit IdInvalidoException(const unsigned long id);
         virtual ~IdInvalidoException() = default;
 };
+
+}
+
 #endif

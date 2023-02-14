@@ -18,7 +18,10 @@ class Interface{
 		static bool administraAdministrador(Administrador *pessoa);
 		static UsuarioAdministrador* loginUsuarioAdministrador();
 		static bool administraUsuarioAdministrador(UsuarioAdministrador *pessoa);
-		static void finalize(Visitante *pessoa);
+		static void finalize();
+		static void finalize(Usuario*pessoa);
+		static void finalize(Administrador *pessoa);
+		static void finalize(UsuarioAdministrador *pessoa);
 	private:
 };
 
